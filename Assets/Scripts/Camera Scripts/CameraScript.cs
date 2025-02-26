@@ -30,9 +30,9 @@ public class CameraScript : MonoBehaviour
     // Rotates the camera depending on which way the player is going
     void RotateCamera()
     {
-        if (pm.horizontal == 1)
+        if (pm.rb.linearVelocity.x > 0 && !pm.isWallJumping)
         {
-            currentEulerAngles += new Vector3(0, cameraRotation * pm.horizontal, 0) * Time.deltaTime * rotationSpeed;  // Modifying the Vector3 based on input, multiplied by speed and time 
+            currentEulerAngles += new Vector3(0, cameraRotation, 0) * Time.deltaTime * rotationSpeed;  // Modifying the Vector3 based on input, multiplied by speed and time 
             currentRotation.eulerAngles = currentEulerAngles;                                                          // Sets the Vector3 into Quaternion format  
             transform.rotation = currentRotation;                                                                      // Applies the Quaternion to the Camera and rotates it
 
@@ -43,10 +43,9 @@ public class CameraScript : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 8, 0);
             }
         }
-
-        if (pm.horizontal == -1)
+        else if (pm.rb.linearVelocity.x < 0 && !pm.isWallJumping)
         {
-            currentEulerAngles += new Vector3(0, cameraRotation * pm.horizontal, 0) * Time.deltaTime * rotationSpeed;
+            currentEulerAngles += new Vector3(0, cameraRotation, 0) * Time.deltaTime * rotationSpeed;
             currentRotation.eulerAngles = currentEulerAngles;
             transform.rotation = currentRotation;
 

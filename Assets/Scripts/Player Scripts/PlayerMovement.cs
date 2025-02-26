@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask wallLayer;
     public Transform groundCheck;
+    public Transform wallCheck;
 
     //PLAYER STATS
     [Header("===PLAYER STATS===")]
@@ -16,6 +17,12 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 10;
     public float jumpHoldTime;
     public float maxJumpHoldTime = 0.4f;
+    public float wallSlidingSpeed = 2;
+    public float wallJumpingDirection;
+    public float wallJumpingTime = 0.2f;
+    public float wallJumpingCounter;
+    public float wallJumpingDuration = 0.4f;
+    public Vector3 wallJumpingPower = new Vector3(8, 16);
 
 
     private float coyoteTime = 0.2f;
@@ -28,10 +35,10 @@ public class PlayerMovement : MonoBehaviour
 
     //PLAYER BOOLS
     [Header("===PLAYER CONDITIONS===")]
-    public bool isGrounded;
-    public bool isWallSliding;
-    public bool isOnWall;
-    public bool isHoldingJump;
+    [SerializeField] private bool isWallSliding;
+    [SerializeField] private bool isHoldingJump;
+    [SerializeField] public bool isWallJumping;
+    [SerializeField] private bool isFacingRight;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,11 +48,12 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        GroundCheck();
+    { 
+        horizontal = Input.GetAxisRaw("Horizontal");
+
 
         // Allows the player to jump slightly after leaving the ground 
-        if (isGrounded)
+        if (isGrounded())
         {coyoteTimeCounter = coyoteTime;}
         else
         {coyoteTimeCounter -= Time.deltaTime;}
@@ -76,14 +84,25 @@ public class PlayerMovement : MonoBehaviour
             }
 
             isHoldingJump = false;
-        } 
+        }
+
+        WallSlide();
+        WallJump();
+
+        if (!isWallJumping)
+        {
+            Flip();
+        }
     }
 
     private void FixedUpdate()
     {
-        // Lets the player move left and right
-        horizontal = Input.GetAxisRaw("Horizontal");
-        rb.linearVelocity = new Vector3(horizontal * speed, rb.linearVelocity.y, rb.linearVelocity.z);
+        if (!isWallJumping)
+        {
+            rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+        }
+
+        
 
         // Stops upward force after a certain amount of time
         if (isHoldingJump)
@@ -97,18 +116,77 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void GroundCheck()
+    private bool isGrounded()
     {
-        if(Physics.Raycast(groundCheck.transform.position, transform.TransformDirection(Vector3.down), 0.2f, groundLayer))
+        return Physics.CheckSphere(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private bool isWalled()
+    {
+        return Physics.CheckSphere(wallCheck.position, 0.3f, wallLayer);
+        
+    }
+
+    private void WallSlide()
+    {
+        if(isWalled() && !isGrounded() && horizontal != 0f)
         {
-            isGrounded = true;
-            Debug.DrawRay(groundCheck.transform.position, transform.TransformDirection(Vector3.down) * 10f, Color.green);
+            isWallSliding = true;
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y, -wallSlidingSpeed, float.MaxValue), rb.linearVelocity.z);
         }
         else
         {
-            isGrounded= false;
-            Debug.DrawRay(groundCheck.transform.position, transform.TransformDirection(Vector3.down) * 10f, Color.red);
+            isWallSliding = false;
+        }
+    }
 
+    private void WallJump()
+    {
+        if (isWallSliding)
+        {
+            isWallJumping = false;
+            wallJumpingDirection = -transform.localScale.x;
+            wallJumpingCounter = wallJumpingTime;
+
+            CancelInvoke(nameof(StopWallJumping));
+        }
+        else
+        {
+            wallJumpingCounter -= Time.deltaTime;
+        }
+
+        if(Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
+        {
+            isWallJumping = true;
+            rb.linearVelocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+            wallJumpingCounter = 0f;
+            isWallSliding = false;
+
+            if(transform.localScale.x != wallJumpingDirection)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1;
+                transform.localScale = localScale;
+            }
+
+            Invoke(nameof(StopWallJumping), wallJumpingDuration);
+        }
+    }
+
+    private void StopWallJumping()
+    {
+        isWallJumping = false;
+    }
+
+    private void Flip()
+    {
+        if(isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1;
+            transform.localScale = localScale;
         }
     }
 }
