@@ -18,11 +18,13 @@ public class PlayerMovement : MonoBehaviour
     public float maxJumpHoldTime = 0.4f;
 
 
-    [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private float coyoteTimeCounter;
+    private float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
 
-    [SerializeField] private float jumpBufferTime = 0.2f;
-    [SerializeField] private float jumpBufferCounter;
+    private float jumpBufferTime = 0.2f;
+    private float jumpBufferCounter;
+
+    public float horizontal;
 
     //PLAYER BOOLS
     [Header("===PLAYER CONDITIONS===")]
@@ -42,11 +44,13 @@ public class PlayerMovement : MonoBehaviour
     {
         GroundCheck();
 
+        // Allows the player to jump slightly after leaving the ground 
         if (isGrounded)
         {coyoteTimeCounter = coyoteTime;}
         else
         {coyoteTimeCounter -= Time.deltaTime;}
 
+        // Allows the player to jump again slightly before hitting the ground 
         if (Input.GetButtonDown("Jump"))
         {
             jumpBufferCounter = jumpBufferTime;
@@ -55,12 +59,14 @@ public class PlayerMovement : MonoBehaviour
         else
         {jumpBufferCounter -= Time.deltaTime;}
 
+        // Allows the player to jump
         if(jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
             jumpBufferCounter = 0f;
         }
 
+        // Stops jump if player lets go of Space
         if (Input.GetButtonUp("Jump"))
         {
             if(rb.linearVelocity.y > 0f)
@@ -75,9 +81,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        // Lets the player move left and right
+        horizontal = Input.GetAxisRaw("Horizontal");
         rb.linearVelocity = new Vector3(horizontal * speed, rb.linearVelocity.y, rb.linearVelocity.z);
 
+        // Stops upward force after a certain amount of time
         if (isHoldingJump)
         {
             jumpHoldTime += Time.fixedDeltaTime;
