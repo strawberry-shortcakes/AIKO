@@ -5,7 +5,7 @@ public class CameraScript : MonoBehaviour
     public PlayerMovement pm;
     public float cameraRotation = 8;
     public float rotationSpeed = 20;
-
+    
     public float cameraPosition = 3;
     public float positionSpeed = 20;
 
