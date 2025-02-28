@@ -16,4 +16,9 @@ public class GrapplingScript : MonoBehaviour
     {
         
     }
+
+    void GrappleRange()
+    {
+      
+    }
 }
