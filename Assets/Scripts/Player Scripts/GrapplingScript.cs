@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class GrapplingScript : MonoBehaviour
 {
-    public LineRenderer lr;
-    public LayerMask grappleLayer;
+    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

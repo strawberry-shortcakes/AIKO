@@ -1,3 +1,6 @@
+using NUnit;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -6,17 +9,23 @@ public class PlayerMovement : MonoBehaviour
     //COMPONENTS
     [Header("===COMPONENTS===")]
     public Rigidbody rb;
+    public GrapplePointScript gps;
     public LayerMask groundLayer;
     public LayerMask wallLayer;
+    public LayerMask grappleLayer;
     public Transform groundCheck;
     public Transform wallCheck;
+    public Transform grappleCheck;
 
     //PLAYER STATS
     [Header("===PLAYER STATS===")]
     public float speed = 10;
+
     public float jumpForce = 10;
     public float jumpHoldTime;
     public float maxJumpHoldTime = 0.4f;
+
+    [Header("===WALL JUMPING & SLIDING===")]
     public float wallSlidingSpeed = 2;
     public float wallJumpingDirection;
     public float wallJumpingTime = 0.2f;
@@ -24,6 +33,17 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpingDuration = 0.4f;
     public Vector3 wallJumpingPower = new Vector3(8, 16);
 
+    [Header("===GRAPPLE===")]
+    public Transform startMarker;
+    public Transform endMarker;
+    public float startTime;
+    public float grappleSpeed = 1;
+    public float journeyLength;
+    public float distCovered;
+    public float elapsedTime;
+    public float grappleDuration = 2f;
+    
+    
 
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
@@ -39,18 +59,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isHoldingJump;
     [SerializeField] public bool isWallJumping;
     [SerializeField] private bool isFacingRight;
+    public bool isNearGrapple;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        startMarker = gameObject.transform;
+        
     }
 
     // Update is called once per frame
     void Update()
     { 
         horizontal = Input.GetAxisRaw("Horizontal");
-
+        
 
         // Allows the player to jump slightly after leaving the ground 
         if (isGrounded())
@@ -88,6 +112,15 @@ public class PlayerMovement : MonoBehaviour
 
         WallSlide();
         WallJump();
+        
+        if(isNearGrapple)
+        {
+            Grapple();  
+        }
+
+
+
+
 
         if (!isWallJumping)
         {
@@ -114,6 +147,8 @@ public class PlayerMovement : MonoBehaviour
                 jumpHoldTime = 0f;
             }
         }
+
+        
     }
 
     private bool isGrounded()
@@ -126,6 +161,8 @@ public class PlayerMovement : MonoBehaviour
         return Physics.CheckSphere(wallCheck.position, 0.3f, wallLayer);
         
     }
+
+    
 
     private void WallSlide()
     {
@@ -178,6 +215,28 @@ public class PlayerMovement : MonoBehaviour
     {
         isWallJumping = false;
     }
+
+    
+     
+
+    void Grapple()
+    {
+        endMarker = gps.grapplePosition;
+        elapsedTime += Time.deltaTime;
+        
+        
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            
+            float t = elapsedTime / grappleDuration;
+            transform.position = Vector3.Lerp(startMarker.position, endMarker.position, t); 
+        }
+    }
+
+    
+
+    
 
     private void Flip()
     {
