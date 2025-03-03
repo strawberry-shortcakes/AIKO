@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
     public float current;
     public float target;
     [SerializeField] private AnimationCurve grappleCurve;
+    private float grappleCDTime = 0.4f;
+    private float grappleCDTimeCounter;
 
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
@@ -108,15 +110,11 @@ public class PlayerMovement : MonoBehaviour
 
         WallSlide();
         WallJump();
-        
-        if(isNearGrapple)
+
+        if (isNearGrapple)
         {
-            Grapple();  
+            Grapple();
         }
-
-
-
-
 
         if (!isWallJumping)
         {
@@ -147,11 +145,13 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    // Checks to see if player is grounded
     private bool isGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, 0.2f, groundLayer);
     }
 
+    //Checks to see if player is touching a wall
     private bool isWalled()
     {
         return Physics.CheckSphere(wallCheck.position, 0.3f, wallLayer);
@@ -214,11 +214,11 @@ public class PlayerMovement : MonoBehaviour
 
     
      
-   
+   //Multiple Grapple Points do not work, Needs fixing <3
     void Grapple()
     {
         startMarker = gameObject.transform.position;
-        endMarker = gps.transform.position;
+        endMarker = gps.grapplePosition.position;
         target = 1f;
 
 

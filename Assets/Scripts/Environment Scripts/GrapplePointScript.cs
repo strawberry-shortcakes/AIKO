@@ -31,6 +31,7 @@ public class GrapplePointScript : MonoBehaviour
         else
         {
             ps.isNearGrapple = false;
+            ps.gps = null;
         }
     }
 }
