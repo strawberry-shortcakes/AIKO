@@ -34,16 +34,12 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 wallJumpingPower = new Vector3(8, 16);
 
     [Header("===GRAPPLE===")]
-    public Transform startMarker;
-    public Transform endMarker;
-    public float startTime;
-    public float grappleSpeed = 1;
-    public float journeyLength;
-    public float distCovered;
-    public float elapsedTime;
-    public float grappleDuration = 2f;
-    
-    
+    public Vector3 startMarker;
+    public Vector3 endMarker;
+    public float grappleSpeed = 1f;
+    public float current;
+    public float target;
+    [SerializeField] private AnimationCurve grappleCurve;
 
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
@@ -66,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        startMarker = gameObject.transform;
+        startMarker = gameObject.transform.position;
         
     }
 
@@ -218,19 +214,22 @@ public class PlayerMovement : MonoBehaviour
 
     
      
-
+   
     void Grapple()
     {
-        endMarker = gps.grapplePosition;
-        elapsedTime += Time.deltaTime;
-        
-        
+        startMarker = gameObject.transform.position;
+        endMarker = gps.transform.position;
+        target = 1f;
 
-        if (Input.GetKeyDown(KeyCode.E))
+
+        if (Input.GetKey(KeyCode.E))
         {
-            
-            float t = elapsedTime / grappleDuration;
-            transform.position = Vector3.Lerp(startMarker.position, endMarker.position, t); 
+            current = Mathf.MoveTowards(current, target, grappleSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(startMarker, endMarker, grappleCurve.Evaluate(current));
+        }
+        else
+        {
+            current = 0;
         }
     }
 

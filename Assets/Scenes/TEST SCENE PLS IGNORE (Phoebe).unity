@@ -1530,6 +1530,18 @@ PrefabInstance:
       propertyPath: grappleLayer.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: 1472910377010508906, guid: ef35eae7b23fd5241b2a52b83e07c83a, type: 3}
+      propertyPath: grappleCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472910377010508906, guid: ef35eae7b23fd5241b2a52b83e07c83a, type: 3}
+      propertyPath: grappleCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472910377010508906, guid: ef35eae7b23fd5241b2a52b83e07c83a, type: 3}
+      propertyPath: grappleCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2026533391849395576, guid: ef35eae7b23fd5241b2a52b83e07c83a, type: 3}
       propertyPath: m_Name
       value: Player
