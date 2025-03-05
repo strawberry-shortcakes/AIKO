@@ -39,9 +39,9 @@ public class PlayerMovement : MonoBehaviour
     public float grappleSpeed = 1f;
     public float current;
     public float target;
+    public GameObject grapplePoint;
+    
     [SerializeField] private AnimationCurve grappleCurve;
-    private float grappleCDTime = 0.4f;
-    private float grappleCDTimeCounter;
 
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
@@ -113,8 +113,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (isNearGrapple)
         {
-            Grapple();
+            Grapple(); 
+            
         }
+        
 
         if (!isWallJumping)
         {
@@ -217,8 +219,10 @@ public class PlayerMovement : MonoBehaviour
    //Multiple Grapple Points do not work, Needs fixing <3
     void Grapple()
     {
+        //grapplePoint = GameObject.FindGameObjectWithTag("Grapple");
+        //gps = grapplePoint.GetComponent<GrapplePointScript>();
+
         startMarker = gameObject.transform.position;
-        endMarker = gps.grapplePosition.position;
         target = 1f;
 
 
@@ -226,6 +230,10 @@ public class PlayerMovement : MonoBehaviour
         {
             current = Mathf.MoveTowards(current, target, grappleSpeed * Time.deltaTime);
             transform.position = Vector3.Lerp(startMarker, endMarker, grappleCurve.Evaluate(current));
+        }
+        else if(startMarker == endMarker) 
+        {
+            current = 1;
         }
         else
         {

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GrapplePointScript : MonoBehaviour
 {
-    public Transform grapplePosition;
+    public Vector3 grapplePosition;
     public PlayerMovement ps;
     public LayerMask playerLayer;
          
@@ -11,7 +11,7 @@ public class GrapplePointScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        grapplePosition = this.gameObject.transform;
+        grapplePosition = gameObject.transform.position;
         ps = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
@@ -23,15 +23,30 @@ public class GrapplePointScript : MonoBehaviour
 
     public void PlayerCheck()
     {
-       if(Physics.CheckSphere(new Vector3(grapplePosition.transform.position.x, grapplePosition.transform.position.y), 10f, playerLayer))
+       if(IsPlayerNearGrapple())
         {
+            ps.grapplePoint = gameObject;
             ps.gps = this;
+            ps.endMarker = grapplePosition;
             ps.isNearGrapple = true;
         }
-        else
+       else
         {
             ps.isNearGrapple = false;
+            ps.endMarker = Vector3.zero;
             ps.gps = null;
+            ps.grapplePoint = null;
+            
         }
+    }
+
+    public bool IsPlayerNearGrapple()
+    {
+        return Physics.CheckSphere(new Vector3(grapplePosition.x, grapplePosition.y), 10f, playerLayer, QueryTriggerInteraction.Collide);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(grapplePosition, 10);
     }
 }
