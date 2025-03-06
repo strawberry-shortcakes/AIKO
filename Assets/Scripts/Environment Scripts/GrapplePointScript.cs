@@ -25,9 +25,9 @@ public class GrapplePointScript : MonoBehaviour
     {
        if(IsPlayerNearGrapple())
         {
-            ps.grapplePoint = gameObject;
+            ps.grapplePoint = this.gameObject;
             ps.gps = this;
-            ps.endMarker = grapplePosition;
+            ps.endMarker = this.grapplePosition;
             ps.isNearGrapple = true;
         }
        else
