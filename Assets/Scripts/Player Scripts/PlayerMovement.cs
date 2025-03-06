@@ -248,11 +248,8 @@ public class PlayerMovement : MonoBehaviour
         {
             current = Mathf.MoveTowards(current, target, grappleSpeed * Time.deltaTime);
             transform.position = Vector3.Lerp(startMarker, endMarker, grappleCurve.Evaluate(current));
-            gravityScript.gravityScale = defaultGraivty;
-        }
-        else if(startMarker == endMarker) 
-        {
-            current = 1;
+            gravityScript.gravityScale = defaultGraivty; 
+            
         }
         else
         {
