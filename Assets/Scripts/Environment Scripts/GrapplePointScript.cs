@@ -42,7 +42,7 @@ public class GrapplePointScript : MonoBehaviour
 
     public bool IsPlayerNearGrapple()
     {
-        return Physics.CheckSphere(new Vector3(grapplePosition.x, grapplePosition.y), 10f, playerLayer, QueryTriggerInteraction.Collide);
+        return Physics.CheckSphere(new Vector3(this.grapplePosition.x, this.grapplePosition.y), 10f, playerLayer, QueryTriggerInteraction.Collide);
     }
 
     private void OnDrawGizmos()
