@@ -173,8 +173,8 @@ MonoBehaviour:
   wallCheck: {fileID: 1564117004360708547}
   grappleCheck: {fileID: 6017082184798282827}
   speed: 10
-  defaultGraivty: 1.5
-  gravityMultiplier: 2
+  defaultGraivty: 1.75
+  gravityMultiplier: 3
   jumpForce: 10
   jumpHoldTime: 0.31999987
   maxJumpHoldTime: 0.4
@@ -182,7 +182,7 @@ MonoBehaviour:
   wallJumpingDirection: 1
   wallJumpingTime: 0.2
   wallJumpingCounter: -328.2006
-  wallJumpingDuration: 0.4
+  wallJumpingDuration: 0.6
   wallJumpingPower: {x: 8, y: 16, z: 0}
   startMarker: {x: 0, y: 0, z: 0}
   endMarker: {x: 0, y: 0, z: 0}
