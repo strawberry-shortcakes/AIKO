@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("===PLAYER STATS===")]
     public float speed = 10;
 
-    public float defaultGraivty = 1.5f;
+    public float defaultGravity = 1.5f;
     public float gravityMultiplier = 2;
 
     public float jumpForce = 10;
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded())
         {
             coyoteTimeCounter = coyoteTime;
-            gravityScript.gravityScale = defaultGraivty;
+            gravityScript.gravityScale = defaultGravity;
         }
         else
         {coyoteTimeCounter -= Time.deltaTime;}
@@ -121,8 +121,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isNearGrapple)
         {
-            Grapple(); 
-            
+            Grapple();            
         }
         
 
@@ -183,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(isWalled() && !isGrounded() && horizontal != 0f)
         {
-            gravityScript.gravityScale = defaultGraivty;
+            gravityScript.gravityScale = defaultGravity;
             isWallSliding = true;
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y, -wallSlidingSpeed, float.MaxValue), rb.linearVelocity.z);
         }
@@ -232,9 +231,9 @@ public class PlayerMovement : MonoBehaviour
         isWallJumping = false;
     }
 
-    
-     
-   //Multiple Grapple Points do not work, Needs fixing <3
+   
+
+    //Multiple Grapple Points do not work, Needs fixing <3
     void Grapple()
     {
         //grapplePoint = GameObject.FindGameObjectWithTag("Grapple");
@@ -248,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
         {
             current = Mathf.MoveTowards(current, target, grappleSpeed * Time.deltaTime);
             transform.position = Vector3.Lerp(startMarker, endMarker, grappleCurve.Evaluate(current));
-            gravityScript.gravityScale = defaultGraivty; 
+            gravityScript.gravityScale = defaultGravity; 
             
         }
         else
