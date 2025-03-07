@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("===COMPONENTS===")]
     public Rigidbody rb;
     public GrapplePointScript gps;
+    public CustomGravityScript gravityScript;
     public LayerMask groundLayer;
     public LayerMask wallLayer;
     public LayerMask grappleLayer;
@@ -21,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("===PLAYER STATS===")]
     public float speed = 10;
 
+    public float defaultGraivty = 1.5f;
+    public float gravityMultiplier = 2;
+
     public float jumpForce = 10;
     public float jumpHoldTime;
     public float maxJumpHoldTime = 0.4f;
@@ -29,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     public float wallSlidingSpeed = 2;
     public float wallJumpingDirection;
     public float wallJumpingTime = 0.2f;
-    public float wallJumpingCounter;
+    public float wallJumpingCounter; 
     public float wallJumpingDuration = 0.4f;
     public Vector3 wallJumpingPower = new Vector3(8, 16);
 
@@ -64,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gravityScript = GetComponent<CustomGravityScript>();
         startMarker = gameObject.transform.position;
         
     }
@@ -76,7 +81,10 @@ public class PlayerMovement : MonoBehaviour
 
         // Allows the player to jump slightly after leaving the ground 
         if (isGrounded())
-        {coyoteTimeCounter = coyoteTime;}
+        {
+            coyoteTimeCounter = coyoteTime;
+            gravityScript.gravityScale = defaultGraivty;
+        }
         else
         {coyoteTimeCounter -= Time.deltaTime;}
 
@@ -137,6 +145,8 @@ public class PlayerMovement : MonoBehaviour
         if (isHoldingJump)
         {
             jumpHoldTime += Time.fixedDeltaTime;
+            gravityScript.gravityScale -= Time.deltaTime * 0.5f;
+
             if(jumpHoldTime >= maxJumpHoldTime)
             {
                 isHoldingJump = false;
@@ -144,7 +154,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        
+        if (!isHoldingJump && !isGrounded())
+        {
+            gravityScript.gravityScale += Time.deltaTime * gravityMultiplier;
+            if(gravityScript.gravityScale >= 5f)
+            {
+                gravityScript.gravityScale = 5f;
+            }
+        }
     }
 
     // Checks to see if player is grounded
@@ -166,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(isWalled() && !isGrounded() && horizontal != 0f)
         {
+            gravityScript.gravityScale = defaultGraivty;
             isWallSliding = true;
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y, -wallSlidingSpeed, float.MaxValue), rb.linearVelocity.z);
         }
@@ -230,10 +248,8 @@ public class PlayerMovement : MonoBehaviour
         {
             current = Mathf.MoveTowards(current, target, grappleSpeed * Time.deltaTime);
             transform.position = Vector3.Lerp(startMarker, endMarker, grappleCurve.Evaluate(current));
-        }
-        else if(startMarker == endMarker) 
-        {
-            current = 1;
+            gravityScript.gravityScale = defaultGraivty; 
+            
         }
         else
         {
