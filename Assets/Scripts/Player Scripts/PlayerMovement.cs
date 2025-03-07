@@ -121,8 +121,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isNearGrapple)
         {
-            Grapple(); 
-            
+            Grapple();            
         }
         
 
@@ -232,9 +231,9 @@ public class PlayerMovement : MonoBehaviour
         isWallJumping = false;
     }
 
-    
-     
-   //Multiple Grapple Points do not work, Needs fixing <3
+   
+
+    //Multiple Grapple Points do not work, Needs fixing <3
     void Grapple()
     {
         //grapplePoint = GameObject.FindGameObjectWithTag("Grapple");
