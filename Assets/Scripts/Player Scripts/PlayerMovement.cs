@@ -110,15 +110,8 @@ public class PlayerMovement : MonoBehaviour
         WallSlide();
         WallJump();
 
-<<<<<<< HEAD
+
        
-=======
-        if (isNearGrapple)
-        {
-            Grapple(); 
-            
-        }
->>>>>>> 1aac42d8442078711e7db7d510618c636da35045
         
 
         if (!isWallJumping)
@@ -227,38 +220,12 @@ public class PlayerMovement : MonoBehaviour
         isWallJumping = false;
     }
 
-<<<<<<< HEAD
-=======
-    
-     
-   //Multiple Grapple Points do not work, Needs fixing <3
-    void Grapple()
-    {
-        //grapplePoint = GameObject.FindGameObjectWithTag("Grapple");
-        //gps = grapplePoint.GetComponent<GrapplePointScript>();
-
-        startMarker = gameObject.transform.position;
-        target = 1f;
-
-
-        if (Input.GetKey(KeyCode.E))
-        {
-            current = Mathf.MoveTowards(current, target, grappleSpeed * Time.deltaTime);
-            transform.position = Vector3.Lerp(startMarker, endMarker, grappleCurve.Evaluate(current));
-            gravityScript.gravityScale = defaultGraivty; 
-            
-        }
-        else
-        {
-            current = 0;
-        }
-    }
 
     
 
     
 
->>>>>>> 1aac42d8442078711e7db7d510618c636da35045
+
     private void Flip()
     {
         if(isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
