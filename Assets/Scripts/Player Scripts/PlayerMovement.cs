@@ -9,14 +9,11 @@ public class PlayerMovement : MonoBehaviour
     //COMPONENTS
     [Header("===COMPONENTS===")]
     public Rigidbody rb;
-    public GrapplePointScript gps;
-    public CustomGravityScript gravityScript;
     public LayerMask groundLayer;
     public LayerMask wallLayer;
-    public LayerMask grappleLayer;
     public Transform groundCheck;
     public Transform wallCheck;
-    public Transform grappleCheck;
+    public CustomGravityScript gravityScript;
 
     //PLAYER STATS
     [Header("===PLAYER STATS===")]
@@ -37,15 +34,9 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpingDuration = 0.4f;
     public Vector3 wallJumpingPower = new Vector3(8, 16);
 
-    [Header("===GRAPPLE===")]
-    public Vector3 startMarker;
-    public Vector3 endMarker;
-    public float grappleSpeed = 1f;
-    public float current;
-    public float target;
-    public GameObject grapplePoint;
+   
     
-    [SerializeField] private AnimationCurve grappleCurve;
+ 
 
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
@@ -61,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isHoldingJump;
     [SerializeField] public bool isWallJumping;
     [SerializeField] private bool isFacingRight;
-    public bool isNearGrapple;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -69,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         gravityScript = GetComponent<CustomGravityScript>();
-        startMarker = gameObject.transform.position;
+       
         
     }
 
@@ -119,10 +110,7 @@ public class PlayerMovement : MonoBehaviour
         WallSlide();
         WallJump();
 
-        if (isNearGrapple)
-        {
-            Grapple();            
-        }
+       
         
 
         if (!isWallJumping)
@@ -230,35 +218,6 @@ public class PlayerMovement : MonoBehaviour
     {
         isWallJumping = false;
     }
-
-   
-
-    //Multiple Grapple Points do not work, Needs fixing <3
-    void Grapple()
-    {
-        //grapplePoint = GameObject.FindGameObjectWithTag("Grapple");
-        //gps = grapplePoint.GetComponent<GrapplePointScript>();
-
-        startMarker = gameObject.transform.position;
-        target = 1f;
-
-
-        if (Input.GetKey(KeyCode.E))
-        {
-            current = Mathf.MoveTowards(current, target, grappleSpeed * Time.deltaTime);
-            transform.position = Vector3.Lerp(startMarker, endMarker, grappleCurve.Evaluate(current));
-            gravityScript.gravityScale = defaultGravity; 
-            
-        }
-        else
-        {
-            current = 0;
-        }
-    }
-
-    
-
-    
 
     private void Flip()
     {
