@@ -14,10 +14,13 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public Transform wallCheck;
     public CustomGravityScript gravityScript;
+    public Camera mainCam;
+    public Transform gunPivot;
 
     //PLAYER STATS
     [Header("===PLAYER STATS===")]
     public float speed = 10;
+    public float horizontal;
 
     public float defaultGraivty = 1.5f;
     public float gravityMultiplier = 2;
@@ -34,17 +37,16 @@ public class PlayerMovement : MonoBehaviour
     public float wallJumpingDuration = 0.4f;
     public Vector3 wallJumpingPower = new Vector3(8, 16);
 
+    private float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
    
+    private float jumpBufferTime = 0.2f;
+    private float jumpBufferCounter;
     
  
 
-    private float coyoteTime = 0.2f;
-    private float coyoteTimeCounter;
 
-    private float jumpBufferTime = 0.2f;
-    private float jumpBufferCounter;
 
-    public float horizontal;
 
     //PLAYER BOOLS
     [Header("===PLAYER CONDITIONS===")]
@@ -109,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
 
         WallSlide();
         WallJump();
-
+        Aiming();
 
        
         
@@ -222,7 +224,13 @@ public class PlayerMovement : MonoBehaviour
 
 
     
-
+    private void Aiming()
+    {
+        Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition); // Track mouse position
+        Vector3 lookDir = mousePos - (Vector3)transform.position;           // New variable called "lookDir"
+        gunPivot.transform.up = lookDir;
+        Debug.Log(mousePos);
+    }
     
 
 
