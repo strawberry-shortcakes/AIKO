@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("===PLAYER STATS===")]
     public float speed = 10;
 
-    public float defaultGravity = 1.5f;
+    public float defaultGraivty = 1.5f;
     public float gravityMultiplier = 2;
 
     public float jumpForce = 10;
@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded())
         {
             coyoteTimeCounter = coyoteTime;
-            gravityScript.gravityScale = defaultGravity;
+            gravityScript.gravityScale = defaultGraivty;
         }
         else
         {coyoteTimeCounter -= Time.deltaTime;}
@@ -110,7 +110,15 @@ public class PlayerMovement : MonoBehaviour
         WallSlide();
         WallJump();
 
+<<<<<<< HEAD
        
+=======
+        if (isNearGrapple)
+        {
+            Grapple(); 
+            
+        }
+>>>>>>> 1aac42d8442078711e7db7d510618c636da35045
         
 
         if (!isWallJumping)
@@ -170,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(isWalled() && !isGrounded() && horizontal != 0f)
         {
-            gravityScript.gravityScale = defaultGravity;
+            gravityScript.gravityScale = defaultGraivty;
             isWallSliding = true;
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y, -wallSlidingSpeed, float.MaxValue), rb.linearVelocity.z);
         }
@@ -219,6 +227,38 @@ public class PlayerMovement : MonoBehaviour
         isWallJumping = false;
     }
 
+<<<<<<< HEAD
+=======
+    
+     
+   //Multiple Grapple Points do not work, Needs fixing <3
+    void Grapple()
+    {
+        //grapplePoint = GameObject.FindGameObjectWithTag("Grapple");
+        //gps = grapplePoint.GetComponent<GrapplePointScript>();
+
+        startMarker = gameObject.transform.position;
+        target = 1f;
+
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            current = Mathf.MoveTowards(current, target, grappleSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(startMarker, endMarker, grappleCurve.Evaluate(current));
+            gravityScript.gravityScale = defaultGraivty; 
+            
+        }
+        else
+        {
+            current = 0;
+        }
+    }
+
+    
+
+    
+
+>>>>>>> 1aac42d8442078711e7db7d510618c636da35045
     private void Flip()
     {
         if(isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
