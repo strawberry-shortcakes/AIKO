@@ -1,7 +1,7 @@
 List of new features, bug fixes and improvements
 
 # Version 1.4.7
-* New gpt feature: Integration into Github Copilot. Can now feed Copilot with project/scene/game-object details.
+* New gpt feature: Integration into GitHub Copilot. Can now feed GitHub Copilot with project/scene/game-object details.
 * Auto updater for itch.io builds
 
 # Version 1.4.6

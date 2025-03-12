@@ -1,8 +1,8 @@
 <!-- UNITY CODE ASSIST INSTRUCTIONS START -->
 - Project name: AIKO
-- Unity version: Unity 6000.0.39f1
+- Unity version: Unity 6000.0.31f1
 - Active game object:
-  - Name: Stairs
+  - Name: Player
   - Tag: Untagged
-  - Layer: Ground
+  - Layer: Player
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
