@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     {
         JumpChecks();
         CountTimers();
+        
     }
 
     private void FixedUpdate()
@@ -198,7 +199,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void InitiateJump(int numberOfJumpsUsed)
+    private void InitiateJump(int _numberOfJumpsUsed)
     {
         if (!isJumping)
         {
@@ -206,7 +207,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         jumpBufferTimer = 0f;
-        numberOfJumpsUsed += numberOfJumpsUsed;
+        numberOfJumpsUsed += _numberOfJumpsUsed;
         verticalVelocity = moveStats.initialJumpVelocity;
     }
 
@@ -300,7 +301,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // CLAMP FALL SPEED
-        verticalVelocity = Mathf.Clamp(verticalVelocity, -moveStats.maxFallSpeed, 50f);
+        verticalVelocity = Mathf.Clamp(verticalVelocity, -moveStats.maxFallSpeed, 100f);
 
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, verticalVelocity, 0f);
     }
@@ -311,8 +312,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void BumpedHead()
     {
-        Vector3 boxCastOrigins = new Vector3(feetCollider.bounds.center.x, feetCollider.bounds.min.y, -4f);
-        Vector3 boxCastSize = new Vector3(feetCollider.bounds.size.x, moveStats.groundDetectionRayLength, -4f);
+        Vector3 boxCastOrigins = new Vector3(bodyCollider.bounds.center.x, bodyCollider.bounds.min.y);
+        Vector3 boxCastSize = new Vector3(bodyCollider.bounds.size.x, moveStats.groundDetectionRayLength);
 
         if (Physics.BoxCast(boxCastOrigins, boxCastSize, Vector3.up, Quaternion.identity, moveStats.headDetectionRayLength, moveStats.groundLayer))
         {
@@ -344,8 +345,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void IsGrounded()
     {
-        Vector3 boxCastOrigins = new Vector3(feetCollider.bounds.center.x, feetCollider.bounds.min.y, -4f);
-        Vector3 boxCastSize = new Vector3(feetCollider.bounds.size.x, moveStats.groundDetectionRayLength, -4f);
+        Vector3 boxCastOrigins = new Vector3(feetCollider.bounds.center.x, feetCollider.bounds.min.y);
+        Vector3 boxCastSize = new Vector3(feetCollider.bounds.size.x, moveStats.groundDetectionRayLength);
 
         if (Physics.BoxCast(boxCastOrigins, boxCastSize, Vector3.down, Quaternion.identity, moveStats.groundDetectionRayLength, moveStats.groundLayer))
         {
