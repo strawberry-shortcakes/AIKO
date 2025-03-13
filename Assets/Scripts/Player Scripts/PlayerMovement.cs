@@ -1,5 +1,10 @@
 
+using SpriteShadersUltimate.Demo;
+using System.Runtime.CompilerServices;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,12 +12,17 @@ public class PlayerMovement : MonoBehaviour
     public PlayerMovementStats moveStats;
     [SerializeField] private Collider feetCollider;
     [SerializeField] private Collider bodyCollider;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Transform gunPivot;
+    [SerializeField] private Vector3 lookPos;
 
+    
+ 
     private Rigidbody rb;
 
     //Movement Variables
     private Vector3 moveVelocity;
-    private bool isFacingRight;
+    public bool isFacingRight { get; private set; }
 
     //Collision Check Variables 
     private RaycastHit groundHit;
@@ -51,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
     {
         JumpChecks();
         CountTimers();
-        
+        Aiming();
     }
 
     private void FixedUpdate()
@@ -307,6 +317,23 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, verticalVelocity);
     }
+
+    #endregion
+
+    #region Aiming/Gun
+
+    private void HandleAimingPos()
+    {
+        Vector3 mousePos = mainCamera.ScreenToViewportPoint(Input.mousePosition);
+        
+    }
+
+    private void Aiming()
+    {
+         HandleAimingPos();
+
+    }
+
 
     #endregion
 

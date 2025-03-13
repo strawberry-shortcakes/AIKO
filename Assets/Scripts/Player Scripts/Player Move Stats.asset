@@ -20,7 +20,7 @@ MonoBehaviour:
   maxRunSpeed: 30
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   groundDetectionRayLength: 0.08
   headDetectionRayLength: 0.02
   headWidth: 0.495
@@ -33,8 +33,8 @@ MonoBehaviour:
   timeForUpwardsCancel: 0.082
   apexThreshold: 0.621
   apexHangTime: 0.13
-  jumpBufferTime: 0.566
-  jumpCoyoteTime: 0.1
+  jumpBufferTime: 0.652
+  jumpCoyoteTime: 0.185
   showWalkJumpArc: 0
   showRunJumpArc: 0
   stopOnCollision: 0
