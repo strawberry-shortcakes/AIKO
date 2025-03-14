@@ -322,15 +322,11 @@ public class PlayerMovement : MonoBehaviour
 
     #region Aiming/Gun
 
-    private void HandleAimingPos()
-    {
-        Vector3 mousePos = mainCamera.ScreenToViewportPoint(Input.mousePosition);
-        
-    }
 
     private void Aiming()
     {
-         HandleAimingPos();
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+        gunPivot.transform.LookAt(mousePos);
 
     }
 

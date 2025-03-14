@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Player Move Stats
   m_EditorClassIdentifier: 
   maxWalkSpeed: 17
-  groundAcceleration: 5.1
-  groundDeceleration: 20
-  airAcceleration: 5.1
-  airDeceleration: 5
+  groundAcceleration: 10.3
+  groundDeceleration: 28.1
+  airAcceleration: 21.9
+  airDeceleration: 31.4
   maxRunSpeed: 30
   groundLayer:
     serializedVersion: 2
