@@ -340,17 +340,18 @@ public class PlayerMovement : MonoBehaviour
 
     #region Aiming/Gun
 
-    
 
     private void Aiming()
     {
-        Vector3 mousePos = InputManager.MousePos;
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+        gunPivot.transform.LookAt(mousePos);
+
 
         // Clamp mouse to prevent out-of-bounds errors
         mousePos.x = Mathf.Clamp(mousePos.x, 0, Screen.width);
         mousePos.y = Mathf.Clamp(mousePos.y, 0, Screen.height);
 
-        // Use the gun pivot’s Z-depth to avoid perspective distortion
+        // Use the gun pivotï¿½s Z-depth to avoid perspective distortion
         mousePos.z = mainCam.WorldToScreenPoint(gunPivot.transform.position).z;
 
         Vector3 mouseWorldPosition = mainCam.ScreenToWorldPoint(mousePos);
