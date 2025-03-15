@@ -12,12 +12,12 @@ public class PlayerMovement : MonoBehaviour
     public PlayerMovementStats moveStats;
     [SerializeField] private Collider feetCollider;
     [SerializeField] private Collider bodyCollider;
-    [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform gunPivot;
-    [SerializeField] private Vector3 lookPos;
-
+    [SerializeField] private Camera mainCam;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform bulletSpawnPoint;
     
- 
+
     private Rigidbody rb;
 
     //Movement Variables
@@ -51,10 +51,27 @@ public class PlayerMovement : MonoBehaviour
     //Coyote Time Variables
     private float coyoteTimer;
 
+    //Aiming Variable
+   [SerializeField] private Vector3 mousePos;
+   [SerializeField] private Vector3 mouseWorldPosition;
+
+    //Gun Variable
+    private float lastTimeShot;
+    private float rateOfFire = 0.2f;
+    private float bulletSpeed = 15f;
+
     private void Awake()
     {
         isFacingRight = true;
         rb = GetComponent<Rigidbody>();
+
+        
+    }
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        gunPivot.transform.position = transform.position;
     }
 
     private void Update()
@@ -62,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         JumpChecks();
         CountTimers();
         Aiming();
+        Shoot();
     }
 
     private void FixedUpdate()
@@ -322,18 +340,45 @@ public class PlayerMovement : MonoBehaviour
 
     #region Aiming/Gun
 
-    private void HandleAimingPos()
-    {
-        Vector3 mousePos = mainCamera.ScreenToViewportPoint(Input.mousePosition);
-        
-    }
+    
 
     private void Aiming()
     {
-         HandleAimingPos();
+        Vector3 mousePos = InputManager.MousePos;
 
+        // Clamp mouse to prevent out-of-bounds errors
+        mousePos.x = Mathf.Clamp(mousePos.x, 0, Screen.width);
+        mousePos.y = Mathf.Clamp(mousePos.y, 0, Screen.height);
+
+        // Use the gun pivot’s Z-depth to avoid perspective distortion
+        mousePos.z = mainCam.WorldToScreenPoint(gunPivot.transform.position).z;
+
+        Vector3 mouseWorldPosition = mainCam.ScreenToWorldPoint(mousePos);
+        Vector3 lookDir = (mouseWorldPosition - gunPivot.transform.position).normalized;
+
+        // Calculate rotation
+        float rotZ = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        gunPivot.transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 
+    private void Shoot()
+    {
+        if(Time.time < lastTimeShot + rateOfFire)
+        {
+            return;
+        }
+
+        lastTimeShot = Time.time;
+
+        if (InputManager.ShootWasPressed)
+        {
+            GameObject newBullet = Instantiate(bulletPrefab);
+            newBullet.transform.position = bulletSpawnPoint.transform.position;
+            newBullet.transform.rotation = gunPivot.transform.rotation;
+            Rigidbody bulletRB = newBullet.GetComponent<Rigidbody>();
+            bulletRB.linearVelocity = bulletSpawnPoint.transform.up * bulletSpeed;
+        }
+    }
 
     #endregion
 
