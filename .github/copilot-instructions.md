@@ -2,7 +2,7 @@
 - Project name: AIKO
 - Unity version: Unity 6000.0.31f1
 - Active game object:
-  - Name: Player
+  - Name: Cube (2)
   - Tag: Untagged
-  - Layer: Default
+  - Layer: Ground
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

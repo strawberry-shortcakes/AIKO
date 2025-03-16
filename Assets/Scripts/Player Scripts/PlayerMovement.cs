@@ -2,6 +2,7 @@
 using SpriteShadersUltimate.Demo;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -12,16 +13,16 @@ public class PlayerMovement : MonoBehaviour
     public PlayerMovementStats moveStats;
     [SerializeField] private Collider feetCollider;
     [SerializeField] private Collider bodyCollider;
-    [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform gunPivot;
-    [SerializeField] private Vector3 lookPos;
-
+    [SerializeField] private Camera mainCam;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform bulletSpawnPoint;
     
- 
+
     private Rigidbody rb;
 
     //Movement Variables
-    private Vector3 moveVelocity;
+    public float horizontalVelocity { get; private set; } 
     public bool isFacingRight { get; private set; }
 
     //Collision Check Variables 
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit headHit;
     private bool isGrounded;
     private bool bumpedHead;
+    private bool isTouchingWall;
 
     //Jump Variables
     public float verticalVelocity { get; private set; }
@@ -51,23 +53,66 @@ public class PlayerMovement : MonoBehaviour
     //Coyote Time Variables
     private float coyoteTimer;
 
+    //Wall Slide
+    private bool isWallSliding;
+    private bool isWallSlideFalling;
+
+    //Wall Jump 
+    private bool useWallJumpMoveStats;
+    private bool isWallJumping;
+    private float wallJumpTIme;
+    private bool isWallJumpFastFalling;
+    private bool isWallJumpFalling;
+    private float wallJumpFastFallTime;
+    private float wallJumpFastFallReleaseSpeed;
+
+    private float wallJumpPostBufferTimer;
+
+    private float wallJumpApexPoint;
+    private float timePastWallJumpApexThreshold;
+    private bool isPastWallJumpApexThreshold;
+
+    //Aiming Variable
+    private Vector3 mousePos;
+    private Vector3 mouseWorldPosition;
+
+    //Gun Variable
+    private float lastTimeShot;
+    private float rateOfFire = 0.5f;
+    private float bulletSpeed = 30f;
+
     private void Awake()
     {
         isFacingRight = true;
         rb = GetComponent<Rigidbody>();
+
+        
+    }
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        gunPivot.transform.position = transform.position;
     }
 
     private void Update()
     {
-        JumpChecks();
         CountTimers();
+        JumpChecks();
+        LandCheck();
+
+        WallSlideCheck();
+
         Aiming();
+        Shoot();
     }
 
     private void FixedUpdate()
     {
         CollisionChecks();
         Jump();
+        Fall();
+        WallSlide();
 
         if (isGrounded)
         {
@@ -75,33 +120,54 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Move(moveStats.airAcceleration, moveStats.airDeceleration, InputManager.Movement);
+            //Wall Jumping
+            if(useWallJumpMoveStats)
+            {
+                Move(moveStats.wallJumpMoveAcceleration, moveStats.wallJumpMoveDeceleration, InputManager.Movement);
+            }
+
+            //Airborne
+            else
+            {
+                Move(moveStats.airAcceleration, moveStats.airDeceleration, InputManager.Movement);
+            }
+            
         }
+
+        ApplyVelocity();
+    }
+
+    private void ApplyVelocity()
+    {
+        // CLAMP FALL SPEED
+        verticalVelocity = Mathf.Clamp(verticalVelocity, -moveStats.maxFallSpeed, 50f);
+
+        rb.linearVelocity = new Vector3(horizontalVelocity, verticalVelocity);
     }
 
     #region Movement
 
     private void Move(float acceleration, float deceleration, Vector3 moveInput)
     {
-        if (moveInput != Vector3.zero)
+        if (Mathf.Abs(moveInput.x) >= moveStats.moveThreshold)
         {
             TurnCheck(moveInput);
 
-            Vector3 targetVelocity = Vector3.zero;
+            float targetVelocity = 0f;
             if (InputManager.RunIsHeld)
             {
-                targetVelocity = new Vector3(moveInput.x, 0f) * moveStats.maxRunSpeed;
+                targetVelocity = moveInput.x * moveStats.maxRunSpeed;
             }
-            else { targetVelocity = new Vector3(moveInput.x, 0f) * moveStats.maxWalkSpeed; }
+            else { targetVelocity = moveInput.x * moveStats.maxWalkSpeed; }
 
-            moveVelocity = Vector3.Lerp(moveVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
-            rb.linearVelocity = new Vector3(moveVelocity.x, rb.linearVelocity.y);
+            horizontalVelocity = Mathf.Lerp(horizontalVelocity, targetVelocity, acceleration * Time.fixedDeltaTime);
+            
         }
 
-        else if (moveInput == Vector3.zero)
+        else if (Mathf.Abs(moveInput.x) < moveStats.moveThreshold)
         {
-            moveVelocity = Vector3.Lerp(moveVelocity, Vector3.zero, deceleration);
-            rb.linearVelocity = new Vector3(moveVelocity.x, rb.linearVelocity.y);
+            horizontalVelocity = Mathf.Lerp(horizontalVelocity, 0f, deceleration);
+            
         }
     }
 
@@ -133,13 +199,61 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    #region Land/Fall
+
+    private void LandCheck()
+    {
+        //LANDED
+        if ((isJumping || isFalling || isWallJumpFalling || isWallJumping || isWallSlideFalling || isWallSliding) && isGrounded && verticalVelocity <= 0f)
+        {
+            ResetJumpValues();
+            StopWallSlide();
+            ResetWallJumpValues();
+
+            numberOfJumpsUsed = 0;
+
+            verticalVelocity = Physics.gravity.y;
+        }
+    }
+
+    private void Fall()
+    {
+        // NORMAL GRAVITY WHILE FALLING 
+        if (!isGrounded && !isJumping && !isWallSliding && !isWallJumping)
+        {
+            if (!isFalling)
+            {
+                isFalling = true;
+            }
+
+            verticalVelocity += moveStats.gravity * Time.fixedDeltaTime;
+        }
+    }
+
+    #endregion
+
     #region Jump
+
+    private void ResetJumpValues()
+    {
+        isJumping = false;
+        isFalling = false;
+        isFastFalling = false;
+        fastFallTime = 0f;
+        isPastApexThreshold = false;
+    }
 
     private void JumpChecks()
     {
         //WHEN JUMP KEY IS PRESSED
         if (InputManager.JumpWasPressed)
         {
+            if(isWallSlideFalling && wallJumpPostBufferTimer >= 0) 
+            { return; }
+            
+            else if(isWallSliding || (isTouchingWall & !isGrounded))
+            { return; }
+
             jumpBufferTimer = moveStats.jumpBufferTime;
             jumpReleasedDuringBuffer = false;
         }
@@ -182,31 +296,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //DOUBLE JUMP (IF ADDED)
-        else if (jumpBufferTimer > 0f && isJumping && numberOfJumpsUsed < moveStats.numberOfJumpsAllowed)
+        else if (jumpBufferTimer > 0f && (isJumping || isWallJumping || isWallSlideFalling) && !isTouchingWall && numberOfJumpsUsed < moveStats.numberOfJumpsAllowed)
         {
             isFastFalling = false;
             InitiateJump(1);
         }
 
         //AIR JUMP AFTER COYTOE TIME LAPSE
-        else if (jumpBufferTimer > 0f && isFalling && numberOfJumpsUsed < moveStats.numberOfJumpsAllowed - 1)
+        else if (jumpBufferTimer > 0f && isFalling && !isWallSlideFalling && numberOfJumpsUsed < moveStats.numberOfJumpsAllowed - 1)
         {
             InitiateJump(2);
             isFastFalling = false;
         }
 
-        //LANDED
-        if ((isJumping || isFalling) && isGrounded && verticalVelocity <= 0f)
-        {
-            isJumping = false;
-            isFalling = false;
-            isFastFalling = false;
-            fastFallTime = 0f;
-            isPastApexThreshold = false;
-            numberOfJumpsUsed = 0;
-
-            verticalVelocity = Physics.gravity.y;
-        }
+        
     }
 
     private void InitiateJump(int _numberOfJumpsUsed)
@@ -215,6 +318,8 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumping = true;
         }
+
+        ResetWallJumpValues();
 
         jumpBufferTimer = 0f;
         numberOfJumpsUsed += _numberOfJumpsUsed;
@@ -261,7 +366,7 @@ public class PlayerMovement : MonoBehaviour
                 }
 
                 //GRAVITY ON ASCENDING BUT NOT PAST APEX THRESHOLD
-                else
+                else if(!isFastFalling)
                 {
                     verticalVelocity += moveStats.gravity * Time.fixedDeltaTime;
                     if (isPastApexThreshold)
@@ -301,39 +406,122 @@ public class PlayerMovement : MonoBehaviour
             fastFallTime += Time.fixedDeltaTime;
         }
 
-        // NORMAL GRAVITY WHILE FALLING 
-        if (!isGrounded && !isJumping)
+        
+
+        
+    }
+
+    #endregion
+
+    #region Wall Slide
+
+    private void WallSlideCheck()
+    {
+        if(isTouchingWall && !isGrounded)
         {
-            if (!isFalling)
+            if(verticalVelocity < 0f && !isWallSliding)
             {
-                isFalling = true;
+                ResetJumpValues();
+                ResetWallJumpValues();
+
+                isWallSlideFalling = false;
+                isWallSliding = true;
             }
 
-            verticalVelocity += moveStats.gravity * Time.fixedDeltaTime;
+            if (moveStats.ResetJumpsOnWallSlide)
+            {
+                numberOfJumpsUsed = 0;
+            }
         }
+        else if(isWallSliding && !isTouchingWall && !isGrounded && !isWallSlideFalling)
+        {
+            isWallSlideFalling = true;
+            StopWallSlide();
+        }
+        else
+        {
+            StopWallSlide();
+        }
+    }
 
-        // CLAMP FALL SPEED
-        verticalVelocity = Mathf.Clamp(verticalVelocity, -moveStats.maxFallSpeed, 50f);
+    private void StopWallSlide()
+    {
+        if (isWallSliding)
+        {
+            numberOfJumpsUsed++;
+            isWallSliding = false;
+        }
+    }
 
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, verticalVelocity);
+    private void WallSlide()
+    {
+        if (isWallSliding)
+        {
+            verticalVelocity = Mathf.Lerp(verticalVelocity, -moveStats.wallSlideSpeed, moveStats.wallSlideDecelerationSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+    #endregion
+
+    #region WallJump
+
+    private void ResetWallJumpValues()
+    {
+        isWallSlideFalling = false;
+        useWallJumpMoveStats = false;
+        isWallJumping = false;
+        isWallJumpFastFalling = false;
+        isWallJumpFalling = false;
+        isPastWallJumpApexThreshold = false;
+
+        wallJumpFastFallTime = 0f;
+        wallJumpTIme = 0f;
     }
 
     #endregion
 
     #region Aiming/Gun
 
-    private void HandleAimingPos()
-    {
-        Vector3 mousePos = mainCamera.ScreenToViewportPoint(Input.mousePosition);
-        
-    }
 
     private void Aiming()
     {
-         HandleAimingPos();
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+        gunPivot.transform.LookAt(mousePos);
 
+
+        // Clamp mouse to prevent out-of-bounds errors
+        mousePos.x = Mathf.Clamp(mousePos.x, 0, Screen.width);
+        mousePos.y = Mathf.Clamp(mousePos.y, 0, Screen.height);
+
+        // Use the gun pivot�s Z-depth to avoid perspective distortion
+        mousePos.z = mainCam.WorldToScreenPoint(gunPivot.transform.position).z;
+
+        Vector3 mouseWorldPosition = mainCam.ScreenToWorldPoint(mousePos);
+        Vector3 lookDir = (mouseWorldPosition - gunPivot.transform.position).normalized;
+
+        // Calculate rotation
+        float rotZ = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        gunPivot.transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 
+    private void Shoot()
+    {
+        if(Time.time < lastTimeShot + rateOfFire)
+        {
+            return;
+        }
+
+        lastTimeShot = Time.time;
+
+        if (InputManager.ShootWasPressed)
+        {
+            GameObject newBullet = Instantiate(bulletPrefab);
+            newBullet.transform.position = bulletSpawnPoint.transform.position;
+            newBullet.transform.rotation = gunPivot.transform.rotation;
+            Rigidbody bulletRB = newBullet.GetComponent<Rigidbody>();
+            bulletRB.linearVelocity = bulletSpawnPoint.transform.up * bulletSpeed;
+        }
+    }
 
     #endregion
 
@@ -406,9 +594,55 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void IsTouchingWall()
+    {
+        float originEndPoint = 0f;
+        if (isFacingRight)
+        {
+            originEndPoint = bodyCollider.bounds.max.x;
+        }
+        else
+        {
+            originEndPoint = bodyCollider.bounds.min.x;
+        }
+
+        float adjustedHeight = bodyCollider.bounds.size.y * moveStats.wallDetectionRayHeightMultiplier;
+
+        Vector2 boxCastOrigin = new Vector2(originEndPoint, bodyCollider.bounds.center.y);
+        Vector2 boxCastSize = new Vector2(moveStats.wallDetectionRayLength,adjustedHeight);
+
+        if(Physics.Raycast(boxCastOrigin,transform.right, moveStats.wallDetectionRayLength, moveStats.groundLayer))
+        {
+            isTouchingWall = true;
+        }
+        else
+        {
+            isTouchingWall= false;
+        }
+
+        #region Debug Visualization 
+
+        if (moveStats.DebugShowWallHitBox)
+        {
+            Color rayColor;
+            if (isTouchingWall)
+            {
+                rayColor = Color.green;
+            }
+            else { rayColor = Color.red; }
+
+            Debug.DrawRay(boxCastOrigin, transform.right, rayColor);
+        }
+
+        #endregion
+
+    }
+
     private void CollisionChecks()
     {
         IsGrounded();
+        BumpedHead();
+        IsTouchingWall();
     }
 
     #endregion
