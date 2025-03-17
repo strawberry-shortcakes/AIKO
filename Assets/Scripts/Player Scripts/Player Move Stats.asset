@@ -26,9 +26,9 @@ MonoBehaviour:
     m_Bits: 192
   groundDetectionRayLength: 0.1
   headDetectionRayLength: -2.51
-  headWidth: 0.84
-  wallDetectionRayLength: 0.28
-  wallDetectionRayHeightMultiplier: 0.255
+  headWidth: 0.394
+  wallDetectionRayLength: 0.007
+  wallDetectionRayHeightMultiplier: 0.79
   jumpHeight: 4.11
   jumpHeightCompensationFactor: 1.002
   timeTillJumpApex: 0.55
