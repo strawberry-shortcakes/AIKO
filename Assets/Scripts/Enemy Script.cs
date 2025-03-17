@@ -22,7 +22,8 @@ public class EnemyScript : MonoBehaviour
 
     //States 
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public bool playerInSightRange;
+    public bool playerInAttackRange;
 
     private void Awake()
     {
@@ -36,18 +37,31 @@ public class EnemyScript : MonoBehaviour
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         Debug.Log(Physics.CheckSphere(transform.position, sightRange, whatIsPlayer));
+
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         Debug.Log(Physics.CheckSphere(transform.position, attackRange, whatIsPlayer));
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        if (!playerInSightRange && !playerInAttackRange)
+        {
+            Patroling();
+            Debug.Log("WORKS");
+        }
+        if (playerInSightRange && !playerInAttackRange)
+        {
+            ChasePlayer();
+            Debug.Log("DEF WORKS");
+        }
+        if (playerInSightRange && playerInAttackRange)
+        {
+            AttackPlayer();
+            Debug.Log("UHOH");
+        }
     }
 
     private void Patroling()
     {
         if (!walkPointSet) SearchWalkPoint();
-
+        
         if (walkPointSet)
             agent.SetDestination(walkPoint);
 
@@ -63,10 +77,9 @@ public class EnemyScript : MonoBehaviour
     private void SearchWalkPoint()
     {
         //Calculate random point in range
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
@@ -76,7 +89,8 @@ public class EnemyScript : MonoBehaviour
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
-    }
+        Debug.Log("chaseing player");
+    } //currently not being seen ^^
 
 
     private void AttackPlayer()
