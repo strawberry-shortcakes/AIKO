@@ -555,14 +555,14 @@ public class PlayerMovement : MonoBehaviour
             if(verticalVelocity >= 0)
             {
                 //APEX CONTROLS
-                wallJumpApexPoint = Mathf.InverseLerp(moveStats.wallJumpDirection, 0f, verticalVelocity);
+                wallJumpApexPoint = Mathf.InverseLerp(moveStats.wallJumpDirection.y, 0f, verticalVelocity);
 
-                if(wallJumpApexPoint > moveStats.ApexThreshold)
+                if(wallJumpApexPoint > moveStats.apexThreshold)
                 {
                     if(!isPastWallJumpApexThreshold)
                     {
                         timePastWallJumpApexThreshold += Time.fixedDeltaTime;
-                        if(timePastWallJumpApexThreshold < moveStats.ApexHangTime)
+                        if(timePastWallJumpApexThreshold < moveStats.apexHangTime)
                         {
                             verticalVelocity = 0f;
                         }
@@ -574,7 +574,7 @@ public class PlayerMovement : MonoBehaviour
                 }
 
                 //GRAVITY IN ASCENDING BUT NOT PAST APEX THRESHOLD
-                else if(isWallJumpFastFalling)
+                else if(!isWallJumpFastFalling)
                 {
                     verticalVelocity += moveStats.wallJumpGravity * Time.fixedDeltaTime;
                     if (isPastWallJumpApexThreshold)
@@ -598,6 +598,21 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        //HANDLE WALLJUMP CUT
+        if (isWallJumpFalling)
+        {
+            if (wallJumpFastFallTime >= moveStats.timeForUpwardsCancel)
+            {
+                verticalVelocity += moveStats.wallJumpGravity * moveStats.wallJumpGravityOnReleaseMultiplier * Time.fixedDeltaTime;
+            }
+            else if (wallJumpFastFallTime < moveStats.timeForUpwardsCancel)
+            {
+                verticalVelocity = Mathf.Lerp(wallJumpFastFallReleaseSpeed, 0f, (wallJumpFastFallTime / moveStats.timeForUpwardsCancel));
+            }
+
+            wallJumpFastFallTime += Time.fixedDeltaTime;
+        }
+        
     }
 
     private bool ShouldApplyPostWallJumpBuffer()

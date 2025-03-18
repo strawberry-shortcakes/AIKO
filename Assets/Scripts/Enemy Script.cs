@@ -39,6 +39,12 @@ public class EnemyScript : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         Debug.Log(Physics.CheckSphere(transform.position, attackRange, whatIsPlayer));
 
+        Debug.Log($"Player in sight range: {playerInSightRange}");
+        Debug.Log($"Player in attack range: {playerInAttackRange}");
+
+        Collider[] detectedObjects = Physics.OverlapSphere(transform.position, sightRange, whatIsPlayer);
+        Debug.Log($"Objects detected in sight range: {detectedObjects.Length}");
+
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
