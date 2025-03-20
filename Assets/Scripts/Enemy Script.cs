@@ -18,7 +18,9 @@ public class EnemyScript : MonoBehaviour
     //Attacking 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public GameObject projectile; 
+
+    //Can be used for projectile enemy
+   // public GameObject projectile; 
 
     //States 
     public float sightRange, attackRange;
@@ -41,21 +43,12 @@ public class EnemyScript : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         Debug.Log(Physics.CheckSphere(transform.position, attackRange, whatIsPlayer));
 
-        if (!playerInSightRange && !playerInAttackRange)
-        {
-            Patroling();
-            Debug.Log("WORKS");
-        }
-        if (playerInSightRange && !playerInAttackRange)
-        {
-            ChasePlayer();
-            Debug.Log("DEF WORKS");
-        }
-        if (playerInSightRange && playerInAttackRange)
-        {
-            AttackPlayer();
-            Debug.Log("UHOH");
-        }
+        Debug.Log($"Player in sight range: {playerInSightRange}");
+        Debug.Log($"Player in attack range: {playerInAttackRange}");
+
+        if (!playerInSightRange && !playerInAttackRange) Patroling();
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
 
     private void Patroling()
@@ -103,10 +96,10 @@ public class EnemyScript : MonoBehaviour
         if (!alreadyAttacked)
         {
             //Attack code here
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+           // Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
 
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+           // rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+           // rb.AddForce(transform.up * 8f, ForceMode.Impulse);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);

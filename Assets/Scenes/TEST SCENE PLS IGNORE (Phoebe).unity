@@ -1335,7 +1335,7 @@ Transform:
   m_GameObject: {fileID: 1001017511}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: -12.414268, y: 2.8975341, z: -16.711071}
+  m_LocalPosition: {x: -12.364538, y: 2.8975236, z: -16.71272}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1551,7 +1551,7 @@ GameObject:
   - component: {fileID: 1137407733}
   - component: {fileID: 1137407736}
   - component: {fileID: 1137407737}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1675,8 +1675,6 @@ MonoBehaviour:
   mainCam: {fileID: 1001017514}
   bulletPrefab: {fileID: 2206624481594878577, guid: fc2c2a4fefe2a8b4f9304111cfdf64e0, type: 3}
   bulletSpawnPoint: {fileID: 1837562455}
-  mousePos: {x: 0, y: 0, z: 0}
-  mouseWorldPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1140522515
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,7 +2271,7 @@ Transform:
   m_GameObject: {fileID: 1656302150}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: -12.414268, y: 2.8975341, z: -16.711071}
+  m_LocalPosition: {x: -12.364538, y: 2.8975236, z: -16.71272}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
