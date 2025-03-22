@@ -385,7 +385,7 @@ Transform:
   m_GameObject: {fileID: 23684397}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: -72.87418, y: -6.6124654, z: -16.711075}
+  m_LocalPosition: {x: -13.974194, y: 3.4975343, z: -16.711075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -883,7 +883,8 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8111630, guid: cc90e0aa039d3954f8de2dea80c6ed76, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1836,7 +1837,7 @@ Transform:
   m_GameObject: {fileID: 134411851}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: -72.87418, y: -6.6124654, z: -16.711075}
+  m_LocalPosition: {x: -13.974194, y: 3.4975343, z: -16.711075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18030,6 +18031,7 @@ GameObject:
   - component: {fileID: 1936379089}
   - component: {fileID: 1936379095}
   - component: {fileID: 1936379094}
+  - component: {fileID: 1936379096}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -18145,7 +18147,7 @@ Transform:
   m_GameObject: {fileID: 1936379088}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -73.2, y: -8.11, z: -4}
+  m_LocalPosition: {x: -14.3, y: 2, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18180,6 +18182,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletTimeSound: {fileID: 1220857447}
   bulletTimeClip: {fileID: 8300000, guid: 4b0f1f70ae775514bb099e2e2912bcc7, type: 3}
+--- !u!114 &1936379096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936379088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e364286603add6459072fd5f93504c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 3.5
+  attackAngle: 45
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  attackCooldown: 0.5
 --- !u!1 &1944802318
 GameObject:
   m_ObjectHideFlags: 0
