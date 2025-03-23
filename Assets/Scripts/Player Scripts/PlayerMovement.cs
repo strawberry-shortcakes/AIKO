@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     //Collision Check Variables 
     private RaycastHit groundHit;
     private RaycastHit headHit;
+    private RaycastHit lastWallHit;
+    private RaycastHit wallHit;
     private bool isGrounded;
     private bool bumpedHead;
     private bool isTouchingWall;
@@ -60,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     //Wall Jump 
     private bool useWallJumpMoveStats;
     private bool isWallJumping;
-    private float wallJumpTIme;
+    private float wallJumpTime;
     private bool isWallJumpFastFalling;
     private bool isWallJumpFalling;
     private float wallJumpFastFallTime;
@@ -78,8 +80,12 @@ public class PlayerMovement : MonoBehaviour
 
     //Gun Variable
     private float lastTimeShot;
-    private float rateOfFire = 0.5f;
+    private float rateOfFire = 0.3f;
     private float bulletSpeed = 30f;
+
+    //Bullet Time Variable
+    private bool bulletTimeActive;
+    
 
     private void Awake()
     {
@@ -102,9 +108,10 @@ public class PlayerMovement : MonoBehaviour
         LandCheck();
 
         WallSlideCheck();
-
+        WallJumpCheck();
         Aiming();
         Shoot();
+        BulletTime();
     }
 
     private void FixedUpdate()
@@ -113,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         Fall();
         WallSlide();
+        WallJump();
 
         if (isGrounded)
         {
@@ -475,7 +483,186 @@ public class PlayerMovement : MonoBehaviour
         isPastWallJumpApexThreshold = false;
 
         wallJumpFastFallTime = 0f;
-        wallJumpTIme = 0f;
+        wallJumpTime = 0f;
+    }
+
+    private void WallJumpCheck()
+    {
+        //if (lastWallHit.collider == null)
+        //{
+        //    Debug.LogError("WallJumpCheck: lastWallHit is NULL!");
+        //}
+        //else
+        //{
+        //    Debug.Log($"WallJumpCheck: lastWallHit.collider = {lastWallHit.collider.name}");
+        //}
+
+        if (ShouldApplyPostWallJumpBuffer())
+        {
+            wallJumpPostBufferTimer = moveStats.wallJumpPostBufferTime;
+        }
+
+        //Wall Jump Fast Falling
+        if (InputManager.JumpWasReleased && !isWallSliding && !isTouchingWall && isWallJumping)
+        {
+            if (verticalVelocity > 0f)
+            {
+                if (isPastApexThreshold)
+                {
+                    isPastApexThreshold = false;
+                    isWallJumpFastFalling = true;
+                    wallJumpFastFallTime = moveStats.timeForUpwardsCancel;
+
+                    verticalVelocity = 0f;
+                }
+                else
+                {
+                    isWallJumpFastFalling = true;
+                    wallJumpFastFallReleaseSpeed = verticalVelocity;
+                }
+            }
+        }
+
+        //Actual Jump With Post Wall Jump Buffer Time
+        if (InputManager.JumpWasPressed && wallJumpPostBufferTimer > 0f)
+        {
+            InitiateWallJump();
+        }
+    }
+
+    private void InitiateWallJump()
+    {
+        
+
+        if (!isWallJumping)
+        {
+            isWallJumping = true;
+            useWallJumpMoveStats = true;
+        }
+
+        StopWallSlide();
+        ResetJumpValues();
+        wallJumpTime = 0f;
+
+        verticalVelocity = moveStats.initialWallJumpVelocity;
+
+        Vector2 hitPoint = lastWallHit.collider.ClosestPoint(bodyCollider.bounds.center);
+        int dirMultiplier = (hitPoint.x > transform.position.x) ? 1 : -1;
+
+        
+
+        horizontalVelocity = moveStats.wallJumpDirection.x * dirMultiplier;
+        Debug.Log($"Wall Jump! Horizontal Velocity: {horizontalVelocity}, Direction Multiplier: {dirMultiplier}");
+
+
+        if (dirMultiplier == 0)
+        {
+            Debug.LogWarning("dirMultiplier is 0, horizontal velocity will not be set correctly");
+        }
+        if (horizontalVelocity == 0)
+        {
+            Debug.LogError("Horizontal velocity is 0. Check dirMultiplier or wall detection.");
+        }
+        Debug.Log($"Wall Jump! Horizontal Velocity: {horizontalVelocity}, Vertical Velocity: {verticalVelocity}");
+    }
+
+    private void WallJump()
+    {
+        //APPLY WALL JUMP GRAVITY
+        if (isWallJumping)
+        {
+            //TIME TO TAKE OVER MOVEMENT CONTROLS WHILE WALL JUMPING 
+            wallJumpTime += Time.fixedDeltaTime;
+            if (wallJumpTime >= moveStats.timeTillJumpApex)
+            {
+                useWallJumpMoveStats = false;
+            }
+
+            //HIT HEAD
+            if (bumpedHead)
+            {
+                isWallJumpFastFalling = true;
+                useWallJumpMoveStats = false;
+            }
+
+            //GRAVITY IN ASCENDING
+            if (verticalVelocity >= 0)
+            {
+                //APEX CONTROLS
+                wallJumpApexPoint = Mathf.InverseLerp(moveStats.wallJumpDirection.y, 0f, verticalVelocity);
+
+                if (wallJumpApexPoint > moveStats.apexThreshold)
+                {
+                    if (!isPastWallJumpApexThreshold)
+                    {
+                        isPastWallJumpApexThreshold = true;
+                        timePastWallJumpApexThreshold = 0f;                        
+                    }
+
+                    if (isPastWallJumpApexThreshold)
+                    {
+                        timePastWallJumpApexThreshold += Time.fixedDeltaTime;
+                        if (timePastWallJumpApexThreshold < moveStats.apexHangTime)
+                        {
+                            verticalVelocity = 0f;
+                        }
+                        else
+                        {
+                            verticalVelocity = -0.01f;
+                        }
+                    }
+                }
+
+                //GRAVITY IN ASCENDING BUT NOT PAST APEX THRESHOLD
+                else if (!isWallJumpFastFalling)
+                {
+                    verticalVelocity += moveStats.wallJumpGravity * Time.fixedDeltaTime;
+                    if (isPastWallJumpApexThreshold)
+                    {
+                        isPastWallJumpApexThreshold = false;
+                    }
+                }
+            }
+
+            //GRAVITY ON DESCENDING 
+            else if (!isWallJumpFastFalling)
+            {
+                verticalVelocity += moveStats.wallJumpGravity * Time.fixedDeltaTime;
+            }
+            else if (verticalVelocity < 0f)
+            {
+                if (!isWallJumpFalling)
+                {
+                    isWallJumpFalling = true;
+                }
+            }
+        }
+
+        //HANDLE WALLJUMP CUT
+        if (isWallJumpFastFalling)
+        {
+            if (wallJumpFastFallTime >= moveStats.timeForUpwardsCancel)
+            {
+                verticalVelocity += moveStats.wallJumpGravity * moveStats.wallJumpGravityOnReleaseMultiplier * Time.fixedDeltaTime;
+            }
+            else if (wallJumpFastFallTime < moveStats.timeForUpwardsCancel)
+            {
+                verticalVelocity = Mathf.Lerp(wallJumpFastFallReleaseSpeed, 0f, (wallJumpFastFallTime / moveStats.timeForUpwardsCancel));
+            }
+
+            wallJumpFastFallTime += Time.fixedDeltaTime;
+        }
+
+
+    }
+
+    private bool ShouldApplyPostWallJumpBuffer()
+    {
+        if (!isGrounded && (isTouchingWall || isWallSliding))
+        {
+            return true;
+        }
+        else { return false; }
     }
 
     #endregion
@@ -525,47 +712,63 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    #region Bullet Time
+
+    public void BulletTime()
+    {
+        if (InputManager.BulletTimeIsHeld)
+        {
+            bulletTimeActive = true;
+            Time.timeScale = 0.50f;
+        }
+        else if (InputManager.BulletTimeWasReleased)
+        {
+            bulletTimeActive = false;
+            Time.timeScale = 1f;
+        }
+    }
+
+    #endregion
+
     #region Collision Checks
 
     private void BumpedHead()
     {
-        Vector3 boxCastOrigins = new Vector3(bodyCollider.bounds.center.x, bodyCollider.bounds.min.y);
-        Vector3 boxCastSize = new Vector3(bodyCollider.bounds.size.x, moveStats.groundDetectionRayLength);
+        Vector3 boxCastOrigins = new Vector3(feetCollider.bounds.center.x, bodyCollider.bounds.max.y);  // Adjusted to use max.y for the head position
+        Vector3 boxCastSize = new Vector3(feetCollider.bounds.size.x * moveStats.headWidth, moveStats.headDetectionRayLength);
 
-        if (Physics.BoxCast(boxCastOrigins, boxCastSize, Vector3.up, Quaternion.identity, moveStats.headDetectionRayLength, moveStats.groundLayer))
+        // Use OverlapBox for detecting collisions in the head area
+        Collider[] colliders = Physics.OverlapBox(boxCastOrigins, boxCastSize / 2, Quaternion.identity, moveStats.groundLayer);
+
+        if (colliders.Length > 0)
         {
             bumpedHead = true;
+            Debug.Log("Head bumped!");
         }
         else
         {
             bumpedHead = false;
         }
 
-
         #region Debug Visualization
         if (moveStats.DebugShowIsHeadBumpedBox)
         {
-            float headWidth = moveStats.headWidth;
+            Color rayColor = bumpedHead ? Color.green : Color.red;
 
-            Color rayColor;
-            if (bumpedHead)
-            {
-                rayColor = Color.green;
-            }
-            else { rayColor = Color.red; }
-
+            // Visualize the box for head bump detection
+            Debug.DrawRay(boxCastOrigins, Vector3.up * moveStats.headDetectionRayLength, rayColor);
             Debug.DrawRay(new Vector3(boxCastOrigins.x - boxCastSize.x / 2, boxCastOrigins.y), Vector3.up * moveStats.headDetectionRayLength, rayColor);
             Debug.DrawRay(new Vector3(boxCastOrigins.x + boxCastSize.x / 2, boxCastOrigins.y), Vector3.up * moveStats.headDetectionRayLength, rayColor);
-            Debug.DrawRay(new Vector3(boxCastOrigins.x - boxCastSize.x / 2, boxCastOrigins.y - moveStats.headDetectionRayLength), Vector3.right * boxCastSize.x * headWidth, rayColor);
         }
         #endregion
     }
-    private void IsGrounded()
+        private void IsGrounded()
     {
         Vector3 boxCastOrigins = new Vector3(feetCollider.bounds.center.x, feetCollider.bounds.min.y);
         Vector3 boxCastSize = new Vector3(feetCollider.bounds.size.x, moveStats.groundDetectionRayLength);
 
-        if (Physics.BoxCast(boxCastOrigins, boxCastSize, Vector3.down, Quaternion.identity, moveStats.groundDetectionRayLength, moveStats.groundLayer))
+        Collider[] colliders = Physics.OverlapBox(boxCastOrigins, boxCastSize / 2, Quaternion.identity, moveStats.groundLayer);
+        if (colliders.Length > 0)
         {
             isGrounded = true;
         }
@@ -573,7 +776,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
-
 
         #region Debug Visualization
         if (moveStats.DebugShowIsGroundedBox)
@@ -596,44 +798,51 @@ public class PlayerMovement : MonoBehaviour
 
     private void IsTouchingWall()
     {
-        float originEndPoint = 0f;
-        if (isFacingRight)
-        {
-            originEndPoint = bodyCollider.bounds.max.x;
-        }
-        else
-        {
-            originEndPoint = bodyCollider.bounds.min.x;
-        }
+        float originOffset = 0.01f;  // Small offset to avoid colliders clipping the wall
+        float originEndPoint = isFacingRight ? bodyCollider.bounds.max.x - originOffset : bodyCollider.bounds.min.x + originOffset;
 
         float adjustedHeight = bodyCollider.bounds.size.y * moveStats.wallDetectionRayHeightMultiplier;
 
+        // Create the origin point for the box cast
         Vector2 boxCastOrigin = new Vector2(originEndPoint, bodyCollider.bounds.center.y);
-        Vector2 boxCastSize = new Vector2(moveStats.wallDetectionRayLength,adjustedHeight);
+        Vector2 boxCastSize = new Vector2(moveStats.wallDetectionRayLength, adjustedHeight);
 
-        if(Physics.Raycast(boxCastOrigin,transform.right, moveStats.wallDetectionRayLength, moveStats.groundLayer))
+        // Use OverlapBox for detecting collisions in the area of the box
+        Collider[] colliders = Physics.OverlapBox(boxCastOrigin, boxCastSize / 2, Quaternion.identity, moveStats.groundLayer);
+
+        if (colliders.Length > 0)
         {
             isTouchingWall = true;
+
+            RaycastHit hit;
+            if (Physics.Raycast(boxCastOrigin, transform.right, out hit, moveStats.wallDetectionRayLength, moveStats.groundLayer))
+            {
+                lastWallHit = hit;  // Set the RaycastHit directly from the raycast
+                //Debug.Log($"Wall detected! Collider: {hit.collider.name}");
+            }
         }
         else
         {
-            isTouchingWall= false;
+            isTouchingWall = false;
+            //Debug.LogWarning("No wall detected.");
         }
 
         #region Debug Visualization 
-
         if (moveStats.DebugShowWallHitBox)
         {
-            Color rayColor;
-            if (isTouchingWall)
-            {
-                rayColor = Color.green;
-            }
-            else { rayColor = Color.red; }
+            Color rayColor = isTouchingWall ? Color.green : Color.red;
 
-            Debug.DrawRay(boxCastOrigin, transform.right, rayColor);
+            // Visualize the box using Debug.DrawLine
+            Vector2 boxBottomLeft = new Vector2(boxCastOrigin.x - boxCastSize.x / 2, boxCastOrigin.y - boxCastSize.y / 2);
+            Vector2 boxBottomRight = new Vector2(boxCastOrigin.x + boxCastSize.x / 2, boxCastOrigin.y - boxCastSize.y / 2);
+            Vector2 boxTopLeft = new Vector2(boxCastOrigin.x - boxCastSize.x / 2, boxCastOrigin.y + boxCastSize.y / 2);
+            Vector2 boxTopRight = new Vector2(boxCastOrigin.x + boxCastSize.x / 2, boxCastOrigin.y + boxCastSize.y / 2);
+
+            Debug.DrawLine(boxBottomLeft, boxBottomRight, rayColor);
+            Debug.DrawLine(boxBottomRight, boxTopRight, rayColor);
+            Debug.DrawLine(boxTopRight, boxTopLeft, rayColor);
+            Debug.DrawLine(boxTopLeft, boxBottomLeft, rayColor);
         }
-
         #endregion
 
     }
@@ -660,6 +869,11 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             coyoteTimer = moveStats.jumpCoyoteTime;
+        }
+
+        if (!ShouldApplyPostWallJumpBuffer())
+        {
+            wallJumpPostBufferTimer -= Time.deltaTime;
         }
     }
 
