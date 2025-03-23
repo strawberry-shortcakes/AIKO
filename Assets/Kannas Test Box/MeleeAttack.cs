@@ -36,7 +36,7 @@ public class MeleeAttack : MonoBehaviour
 
         if (attackDirection == Vector3.zero)
         {
-            attackDirection = transform.right; // Default to the "forward" direction if not moving
+            attackDirection = transform.right; // Default to the "forward" direction if not moving. Made it currently right to fit 2D angles
         }
 
         // Log start and end positions of the attack testing and stuff
