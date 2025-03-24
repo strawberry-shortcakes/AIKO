@@ -24,7 +24,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 192
-  groundDetectionRayLength: 0.49
+  groundDetectionRayLength: 0.63
   headDetectionRayLength: 0.14
   headWidth: 0.408
   wallDetectionRayLength: 0.39
@@ -46,6 +46,12 @@ MonoBehaviour:
   wallJumpDirection: {x: -20, y: 5}
   wallJumpPostBufferTime: 0.105
   wallJumpGravityOnReleaseMultiplier: 1
+  attackRange: 2
+  attackAngle: 45
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  attackCooldown: 0.5
   showWalkJumpArc: 0
   showRunJumpArc: 0
   stopOnCollision: 0
