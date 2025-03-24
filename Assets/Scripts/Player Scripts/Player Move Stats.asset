@@ -28,7 +28,7 @@ MonoBehaviour:
   headDetectionRayLength: 0.14
   headWidth: 0.408
   wallDetectionRayLength: 0.39
-  wallDetectionRayHeightMultiplier: 0.968
+  wallDetectionRayHeightMultiplier: 0.345
   jumpHeight: 4.51
   jumpHeightCompensationFactor: 1.002
   timeTillJumpApex: 0.4
@@ -43,7 +43,7 @@ MonoBehaviour:
   jumpCoyoteTime: 0.185
   wallSlideSpeed: 5
   wallSlideDecelerationSpeed: 50
-  wallJumpDirection: {x: -20, y: 5}
+  wallJumpDirection: {x: 15.93, y: 4.89}
   wallJumpPostBufferTime: 0.105
   wallJumpGravityOnReleaseMultiplier: 1
   attackRange: 2
