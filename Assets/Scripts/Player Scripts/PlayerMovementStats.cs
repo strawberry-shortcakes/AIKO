@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Player Movement")]
 public class PlayerMovementStats : ScriptableObject
 {
+
     [Header("Walk")]
     [Range(0f, 1f)] public float moveThreshold = 0.25f;
     [Range(1f, 100f)] public float maxWalkSpeed = 12.5f;
@@ -57,7 +58,13 @@ public class PlayerMovementStats : ScriptableObject
     [Header("Wall Jump")]
     public Vector2 wallJumpDirection = new Vector2(-20f, 6.5f);
     [Range(0f, 1f)] public float wallJumpPostBufferTime = 0.125f;
-    [Range(0.01f, 5f)] public float wallJumpGravityOnReleaseMultiplier = 1f; 
+    [Range(0.01f, 5f)] public float wallJumpGravityOnReleaseMultiplier = 1f;
+
+    [Header("Melee Attack")]
+    public float attackRange = 2.0f;
+    public float attackAngle = 45.0f;
+    public LayerMask enemyLayer;
+    public float attackCooldown = 0.5f;
 
     [Header("Jump Visualization Tool")]
     public bool showWalkJumpArc = false;

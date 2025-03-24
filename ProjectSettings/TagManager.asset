@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Grapple
   - Ground
+  - Enemy
   layers:
   - Default
   - TransparentFX
