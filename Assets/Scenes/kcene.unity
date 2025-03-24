@@ -385,7 +385,7 @@ Transform:
   m_GameObject: {fileID: 23684397}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: -13.974194, y: 3.4975343, z: -16.711075}
+  m_LocalPosition: {x: -13.803144, y: 3.4974988, z: -16.716753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2027,7 +2027,7 @@ Transform:
   m_GameObject: {fileID: 134411851}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: -13.974194, y: 3.4975343, z: -16.711075}
+  m_LocalPosition: {x: -13.803144, y: 3.4974988, z: -16.716753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3004,7 +3004,7 @@ GameObject:
   - component: {fileID: 241765223}
   - component: {fileID: 241765222}
   - component: {fileID: 241765221}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy placeholder (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4850,7 +4850,7 @@ GameObject:
   - component: {fileID: 462881886}
   - component: {fileID: 462881885}
   - component: {fileID: 462881884}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy placeholder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7378,7 +7378,7 @@ GameObject:
   - component: {fileID: 663387483}
   - component: {fileID: 663387482}
   - component: {fileID: 663387481}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12927,7 +12927,7 @@ GameObject:
   - component: {fileID: 1309177949}
   - component: {fileID: 1309177948}
   - component: {fileID: 1309177947}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy placeholder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16015,7 +16015,7 @@ GameObject:
   - component: {fileID: 1714638506}
   - component: {fileID: 1714638505}
   - component: {fileID: 1714638504}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy placeholder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18709,7 +18709,7 @@ GameObject:
   - component: {fileID: 1944802321}
   - component: {fileID: 1944802320}
   - component: {fileID: 1944802319}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy placeholder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
