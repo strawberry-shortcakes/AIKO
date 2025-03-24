@@ -15,6 +15,13 @@ public class LevelDoor : MonoBehaviour
     }
 
 
+<<<<<<< Updated upstream
    
 
+=======
+    private void OnCollisionEnter(Collision collision)
+    {
+
+    }
+>>>>>>> Stashed changes
 }
