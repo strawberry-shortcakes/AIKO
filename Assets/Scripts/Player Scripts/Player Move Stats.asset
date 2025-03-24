@@ -41,7 +41,7 @@ MonoBehaviour:
   apexHangTime: 0.112
   jumpBufferTime: 0.203
   jumpCoyoteTime: 0.185
-  wallSlideSpeed: 5
+  wallSlideSpeed: 8
   wallSlideDecelerationSpeed: 50
   wallJumpDirection: {x: 15.93, y: 4.89}
   wallJumpPostBufferTime: 0.105
