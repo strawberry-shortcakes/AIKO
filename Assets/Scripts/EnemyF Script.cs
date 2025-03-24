@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnemyFScript : MonoBehaviour
 {
-    //public NavMeshAgent agent;
-    //public Transform player;
+    public UnityEngine.AI.NavMeshAgent agent;
+    public Transform player;
 
     //public LayerMask whatIsGround, whatIsPlayer;
 
@@ -19,11 +19,11 @@ public class EnemyFScript : MonoBehaviour
    // public bool playerInSightRange;
    // public bool playerInAttackRange;
 
-   // private void Awake()
-    //{
+    //private void Awake()
+   //{
     //    player = GameObject.Find("Player").transform;
-   //     agent = GetComponent<NavMeshAgent>();
-   // }
+    //    agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+  //  }
 
 
     //private void Update()

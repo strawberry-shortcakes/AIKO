@@ -361,6 +361,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: logie
       objectReference: {fileID: 0}
+    - target: {fileID: 6170364737530096044, guid: e0b5b505337258a42bd4a02d7009a6f8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2a2859baeeec7e14785299ea50011ea5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: e0b5b505337258a42bd4a02d7009a6f8, type: 3}
