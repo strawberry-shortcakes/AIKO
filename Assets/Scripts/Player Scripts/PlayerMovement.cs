@@ -572,8 +572,8 @@ public class PlayerMovement : MonoBehaviour
 
         verticalVelocity = moveStats.initialWallJumpVelocity;
 
-        Vector2 hitPoint = lastWallHit.collider.ClosestPoint(bodyCollider.bounds.center);
-        int dirMultiplier = (hitPoint.x > transform.position.x) ? 1 : -1;
+        Vector2 hitPoint = lastWallHit.normal;
+        int dirMultiplier = (hitPoint.x > 0) ? 1 : -1;
 
         
 
