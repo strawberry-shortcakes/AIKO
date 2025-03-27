@@ -30,5 +30,4 @@ public class Platform : MonoBehaviour
         {
             _switch = false;
         }
-    }
 }
