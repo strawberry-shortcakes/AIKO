@@ -8,7 +8,8 @@ public class EnemyScript : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    public float health;
+    public int maxHealth = 3;
+    public int health;
 
     //Patroling 
     public Vector3 walkPoint;
@@ -31,6 +32,10 @@ public class EnemyScript : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
+    private void Start()
+    {
+        health = maxHealth;
+    }
 
     private void Update()
     {
@@ -111,11 +116,19 @@ public class EnemyScript : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damage)
+    private void OnCollisionEnter(Collision collision)
     {
-        health -= damage;
-
-        if (health <= 0) Invoke(nameof(DestroyEnemy), .5f);
+        if(collision.gameObject.tag == "Bullet")
+        {
+            if(health >= 1)
+            {
+                health--;
+            }
+            if(health == 0)
+            {
+                DestroyEnemy();
+            }
+        }
     }
 
 

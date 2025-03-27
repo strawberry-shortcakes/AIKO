@@ -88,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Bullet Time Variable
     private bool bulletTimeActive;
+    public float bulletTimeTimer;
 
     //Health Variable
     public int maxHealth = 5;
@@ -108,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         gunPivot.transform.position = transform.position;
         health = maxHealth;
+        bulletTimeTimer = moveStats.bulletTimeMax;
     }
 
     private void Update()
@@ -123,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
             Aiming();
             Shoot();
             BulletTime();
+
             PerformMeleeAttack();
         }
         else
@@ -144,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
             Fall();
             WallSlide();
             WallJump();
+            
         }
         else { return; }
         
@@ -783,16 +787,24 @@ public class PlayerMovement : MonoBehaviour
 
     public void BulletTime()
     {
-        if (InputManager.BulletTimeIsHeld)
+        if (InputManager.BulletTimeIsHeld && bulletTimeTimer > 0)
         {
             bulletTimeActive = true;
+            bulletTimeTimer -= Time.fixedDeltaTime;
             Time.timeScale = 0.50f;
         }
-        else if (InputManager.BulletTimeWasReleased)
+        else if (InputManager.BulletTimeWasReleased || bulletTimeTimer <= 0)
         {
             bulletTimeActive = false;
-            Time.timeScale = 1f;
+            Time.timeScale = 1f; 
+
         }
+
+        if (bulletTimeTimer < moveStats.bulletTimeMax && !bulletTimeActive)
+        {
+            bulletTimeTimer += Time.fixedDeltaTime;
+        }
+
     }
 
     #endregion

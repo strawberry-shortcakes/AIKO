@@ -66,6 +66,9 @@ public class PlayerMovementStats : ScriptableObject
     public LayerMask enemyLayer;
     public float attackCooldown = 0.5f;
 
+    [Header("BulletTime")]
+    [Range(0.5f, 3f)] public float bulletTimeMax;
+
     [Header("Jump Visualization Tool")]
     public bool showWalkJumpArc = false;
     public bool showRunJumpArc = false;

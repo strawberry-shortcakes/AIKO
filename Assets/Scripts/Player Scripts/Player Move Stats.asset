@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Player Move Stats
   m_EditorClassIdentifier: 
   moveThreshold: 0
-  maxWalkSpeed: 17
+  maxWalkSpeed: 10.7
   groundAcceleration: 10.3
   groundDeceleration: 28.1
   airAcceleration: 21.9
   airDeceleration: 31.4
   wallJumpMoveAcceleration: 5
   wallJumpMoveDeceleration: 5
-  maxRunSpeed: 30
+  maxRunSpeed: 15.8
   groundLayer:
     serializedVersion: 2
     m_Bits: 192
@@ -52,6 +52,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   attackCooldown: 0.5
+  bulletTimeMax: 1
   showWalkJumpArc: 0
   showRunJumpArc: 0
   stopOnCollision: 0
