@@ -9,14 +9,20 @@ public class InputManager : MonoBehaviour
 
     public static Vector2 Movement;
     public static Vector3 MousePos;
+    
     public static bool JumpWasPressed;
     public static bool JumpIsHeld;
     public static bool JumpWasReleased;
+    
     public static bool RunIsHeld;
+    
     public static bool ShootWasPressed;
+
     public static bool BulletTimeWasPressed;
     public static bool BulletTimeIsHeld;
     public static bool BulletTimeWasReleased;
+
+    public static bool MeleeAttackWasPressed;
 
     private InputAction moveAction;
     private InputAction jumpAction;
@@ -24,6 +30,8 @@ public class InputManager : MonoBehaviour
     private InputAction aimAction;
     private InputAction shootAction;
     private InputAction bulletTimeAction;
+    private InputAction meleeAttackAction;
+
     private void Awake()
     {
         PlayerInput = GetComponent<PlayerInput>();
@@ -34,6 +42,7 @@ public class InputManager : MonoBehaviour
         aimAction = PlayerInput.actions["Aiming"];
         shootAction = PlayerInput.actions["Shoot"];
         bulletTimeAction = PlayerInput.actions["Bullet Time"];
+        meleeAttackAction = PlayerInput.actions["Melee Attack"];
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -59,5 +68,7 @@ public class InputManager : MonoBehaviour
         BulletTimeWasPressed = bulletTimeAction.WasPressedThisFrame();
         BulletTimeIsHeld = bulletTimeAction.IsPressed();
         BulletTimeWasReleased = bulletTimeAction.WasReleasedThisFrame();
+
+        MeleeAttackWasPressed = meleeAttackAction.WasPressedThisFrame();
     }
 }

@@ -7,12 +7,12 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "86315a82-9445-4bb2-8017-7713f0a99b1d",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -54,6 +54,15 @@
                     "name": "Bullet Time",
                     "type": "Button",
                     "id": "377aaafd-456e-4eb3-8028-3f013ba1d249",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Melee Attack",
+                    "type": "Button",
+                    "id": "9ffb8ab9-1d31-4dd5-baf8-97a8aa364e37",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -168,6 +177,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Bullet Time",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "640c3f3d-5404-43f2-adf9-f48ff471fe20",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Melee Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

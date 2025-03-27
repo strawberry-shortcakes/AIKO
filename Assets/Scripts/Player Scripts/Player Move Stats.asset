@@ -13,22 +13,22 @@ MonoBehaviour:
   m_Name: Player Move Stats
   m_EditorClassIdentifier: 
   moveThreshold: 0
-  maxWalkSpeed: 17
+  maxWalkSpeed: 10.5
   groundAcceleration: 10.3
   groundDeceleration: 28.1
   airAcceleration: 21.9
   airDeceleration: 31.4
   wallJumpMoveAcceleration: 5
   wallJumpMoveDeceleration: 5
-  maxRunSpeed: 30
+  maxRunSpeed: 14.6
   groundLayer:
     serializedVersion: 2
     m_Bits: 192
-  groundDetectionRayLength: 0.49
+  groundDetectionRayLength: 0.63
   headDetectionRayLength: 0.14
   headWidth: 0.408
   wallDetectionRayLength: 0.39
-  wallDetectionRayHeightMultiplier: 0.968
+  wallDetectionRayHeightMultiplier: 0.345
   jumpHeight: 4.51
   jumpHeightCompensationFactor: 1.002
   timeTillJumpApex: 0.4
@@ -41,11 +41,17 @@ MonoBehaviour:
   apexHangTime: 0.112
   jumpBufferTime: 0.203
   jumpCoyoteTime: 0.185
-  wallSlideSpeed: 5
+  wallSlideSpeed: 8
   wallSlideDecelerationSpeed: 50
-  wallJumpDirection: {x: -20, y: 5}
+  wallJumpDirection: {x: 15.93, y: 4.89}
   wallJumpPostBufferTime: 0.105
   wallJumpGravityOnReleaseMultiplier: 1
+  attackRange: 2
+  attackAngle: 45
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  attackCooldown: 0.5
   showWalkJumpArc: 0
   showRunJumpArc: 0
   stopOnCollision: 0

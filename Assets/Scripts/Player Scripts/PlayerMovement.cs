@@ -83,8 +83,16 @@ public class PlayerMovement : MonoBehaviour
     private float rateOfFire = 0.3f;
     private float bulletSpeed = 30f;
 
+    //Melee Variable
+    private float lastAttackTime;
+
     //Bullet Time Variable
     private bool bulletTimeActive;
+
+    //Health Variable
+    public int maxHealth = 5;
+    public int health;
+    public bool isDead = false;
     
 
     private void Awake()
@@ -99,28 +107,46 @@ public class PlayerMovement : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Confined;
         gunPivot.transform.position = transform.position;
+        health = maxHealth;
     }
 
     private void Update()
     {
-        CountTimers();
-        JumpChecks();
-        LandCheck();
+        if(!isDead)
+        {
+            CountTimers();
+            JumpChecks();
+            LandCheck();
 
-        WallSlideCheck();
-        WallJumpCheck();
-        Aiming();
-        Shoot();
-        BulletTime();
+            WallSlideCheck();
+            WallJumpCheck();
+            Aiming();
+            Shoot();
+            BulletTime();
+            PerformMeleeAttack();
+        }
+        else
+        {
+            return;
+        }
+        
+
+        
     }
 
     private void FixedUpdate()
     {
-        CollisionChecks();
-        Jump();
-        Fall();
-        WallSlide();
-        WallJump();
+
+        if (!isDead)
+        {
+            CollisionChecks();
+            Jump();
+            Fall();
+            WallSlide();
+            WallJump();
+        }
+        else { return; }
+        
 
         if (isGrounded)
         {
@@ -546,8 +572,8 @@ public class PlayerMovement : MonoBehaviour
 
         verticalVelocity = moveStats.initialWallJumpVelocity;
 
-        Vector2 hitPoint = lastWallHit.collider.ClosestPoint(bodyCollider.bounds.center);
-        int dirMultiplier = (hitPoint.x > transform.position.x) ? 1 : -1;
+        Vector2 hitPoint = lastWallHit.normal;
+        int dirMultiplier = (hitPoint.x > 0) ? 1 : -1;
 
         
 
@@ -712,6 +738,47 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    #region Melee Attack
+
+    private void PerformMeleeAttack()
+    {
+        if(InputManager.MeleeAttackWasPressed && Time.time >= lastAttackTime + moveStats.attackCooldown)
+        {
+            lastAttackTime = Time.time;
+
+            Vector3 attackDirection = rb.linearVelocity.normalized;
+            if (attackDirection == Vector3.zero)
+            {
+                attackDirection = transform.right;
+            }
+
+            Vector3 attackEnd = transform.position + attackDirection * moveStats.attackRange;
+            DrawAttackCone(attackDirection);
+
+            Collider[] hitEnemies = Physics.OverlapSphere(transform.position, moveStats.attackRange, moveStats.enemyLayer);
+            foreach (Collider enemy in hitEnemies)
+            {
+                Debug.Log("Hit " + enemy.name);
+            }
+        }
+        
+
+    }
+
+    private void DrawAttackCone(Vector3 direction)
+    {
+        float angleInRadians = moveStats.attackAngle * Mathf.Deg2Rad;
+
+        Vector3 leftEdge = Quaternion.Euler(0 ,- moveStats.attackAngle, 0) * direction;
+        Vector3 rightEdge = Quaternion.Euler(0, moveStats.attackAngle, 0) * direction;
+
+        Debug.DrawLine(transform.position, transform.position + leftEdge * moveStats.attackRange, Color.red, 1f);
+        Debug.DrawLine(transform.position, transform.position + rightEdge * moveStats.attackRange, Color.red, 1f);
+        Debug.DrawLine(transform.position, transform.position + direction * moveStats.attackRange, Color.red, 1f);
+    }
+
+    #endregion
+
     #region Bullet Time
 
     public void BulletTime()
@@ -727,6 +794,33 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
+
+    #endregion
+
+    #region Health System 
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision Detected");
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if(health >= 1)
+            {
+                health--;
+                Debug.Log("Taken Damage");
+            }
+
+            if (health == 0)
+            {
+                isDead = true;
+                Debug.Log("Dead!");
+            }
+        }
+    }
+    
+
+    
 
     #endregion
 
