@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-guid: 1cda9240f71ee9542abe285c609f7183
-AssetOrigin:
-  serializedVersion: 1
-  productId: 200267
-  packageName: Sci-Fi Old Rusty Props PBR
-  packageVersion: 1.0
-  assetPath: Assets/Data/Sci-fi_assets/Sci-Fi Old rusty props PBR/Data/Textures/Floor/Tutor_floor_Paint_Material
-    _27_AlbedoTransparency.png
-  uploadId: 453519
+guid: 53c72f2ed2b3089408b30aba5d4e4406
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,12 +34,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -71,13 +63,13 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -90,7 +82,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
