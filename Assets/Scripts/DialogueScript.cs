@@ -6,19 +6,51 @@ public class DialogueScript : MonoBehaviour
     public TextMeshProUGUI textComponent;
     public string[] lines;
     public float textSpeed;
+    public GameObject canvas;
     private int index;
+    private bool hasPlayed;
 
+    void Awake()
+    {
+        canvas.SetActive(false);
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        textComponent.text = string.Empty;
-        StartDialogue();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if(textComponent.text == lines[index])
+            {
+                NextLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                textComponent.text = lines[index];
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if(collider.gameObject.tag == "Player" && !hasPlayed)
+        {
+            canvas.SetActive(true);
+            textComponent.text = string.Empty;
+            StartDialogue();
+            hasPlayed = true;
+        }
+        else
+        {
+            return;
+        }
         
     }
 
@@ -39,11 +71,15 @@ public class DialogueScript : MonoBehaviour
 
     void NextLine()
     {
-        if(index < lines.Length)
+        if(index < lines.Length - 1)
         {
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
+        }
+        else 
+        {
+            canvas.SetActive(false);
         }
     }
 }
