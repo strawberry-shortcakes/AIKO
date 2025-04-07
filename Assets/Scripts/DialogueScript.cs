@@ -7,17 +7,24 @@ public class DialogueScript : MonoBehaviour
     public string[] lines;
     public float textSpeed;
     public GameObject canvas;
-    private int index;
-    private bool hasPlayed;
+
+    private DialogueScript dialogue;
+
+    [SerializeField] private GameObject DialogueTrigger;
+    [SerializeField] private int index;
+    [SerializeField] private bool hasPlayed;
+    
 
     void Awake()
     {
         canvas.SetActive(false);
+        
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        this.hasPlayed = false; 
         
     }
 
@@ -29,11 +36,15 @@ public class DialogueScript : MonoBehaviour
             if(textComponent.text == lines[index])
             {
                 NextLine();
+
+                Debug.Log(textComponent.text + " : " + lines[index]);
             }
             else
             {
                 StopAllCoroutines();
                 textComponent.text = lines[index];
+
+                Debug.Log("Stopping Coroutines");
             }
         }
     }
@@ -42,15 +53,26 @@ public class DialogueScript : MonoBehaviour
     {
         if(collider.gameObject.tag == "Player" && !hasPlayed)
         {
-            canvas.SetActive(true);
-            textComponent.text = string.Empty;
-            StartDialogue();
-            hasPlayed = true;
+            dialogue = this;
+
+            if(dialogue != null)
+            {
+                canvas.SetActive(true);
+                textComponent.text = string.Empty;
+                this.hasPlayed = true;
+
+                StartDialogue();
+
+                Debug.Log("Player Entered Dialogue");
+            }
+
+            else
+            {
+                Debug.Log("Returning");
+                return;
+            }
         }
-        else
-        {
-            return;
-        }
+        
         
     }
 
@@ -58,6 +80,8 @@ public class DialogueScript : MonoBehaviour
     {
         index = 0;
         StartCoroutine(TypeLine());
+
+        Debug.Log("Dialoge Started");
     }
 
     IEnumerator TypeLine()
@@ -76,10 +100,16 @@ public class DialogueScript : MonoBehaviour
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
+
+            Debug.Log("Next Line");
         }
-        else 
+        else
         {
+
             canvas.SetActive(false);
+            Debug.Log("Hiding Dialogue Box");
+
+            dialogue = null;
         }
     }
 }
