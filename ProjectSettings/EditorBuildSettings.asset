@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test Scenes/kcene.unity
     guid: 89e11e0f9ba60514982186b939c289ff
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/robtestscene1.unity
+    guid: b808a84c84e887c4591f709816460c1f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
