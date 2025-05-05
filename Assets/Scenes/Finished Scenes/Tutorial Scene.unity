@@ -3008,7 +3008,7 @@ GameObject:
   - component: {fileID: 413080215}
   - component: {fileID: 413080214}
   m_Layer: 0
-  m_Name: =INPUT MANAGER=
+  m_Name: INPUT MANAGER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3081,7 +3081,6 @@ GameObject:
   m_Component:
   - component: {fileID: 454939050}
   - component: {fileID: 454939052}
-  - component: {fileID: 454939051}
   m_Layer: 0
   m_Name: 'Dialogue Trigger '
   m_TagString: Untagged
@@ -3104,28 +3103,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1687230079}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &454939051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454939049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35815ccf961c0b84aae172adc60add42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textComponent: {fileID: 1991298128}
-  lines:
-  - You can slow down your decent on a wall by sliding down it
-  - Slow down time with Right Click
-  - Try not to fall into the pit below
-  textSpeed: 0.1
-  canvas: {fileID: 1263898806}
-  DialogueTrigger: {fileID: 0}
-  index: 0
-  hasPlayed: 0
 --- !u!65 &454939052
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3796,6 +3773,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2076009980}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &510250384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 510250385}
+  - component: {fileID: 510250386}
+  m_Layer: 0
+  m_Name: DIALOGUE MANAGER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &510250385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510250384}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1653427806}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &510250386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510250384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad26bd3316f5f294fae48b1a84792f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueBox: {fileID: 1263898806}
+  dialogueText: {fileID: 1991298128}
+  playingDialogue: 0
+  endDialogueBox: 0
 --- !u!1001 &525784747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3863,7 +3888,8 @@ GameObject:
   m_Component:
   - component: {fileID: 540828116}
   - component: {fileID: 540828115}
-  - component: {fileID: 540828114}
+  - component: {fileID: 540828118}
+  - component: {fileID: 540828117}
   m_Layer: 0
   m_Name: 'Dialogue Trigger '
   m_TagString: Untagged
@@ -3871,27 +3897,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &540828114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540828113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35815ccf961c0b84aae172adc60add42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textComponent: {fileID: 1991298128}
-  lines:
-  - Press A & D To Move
-  - This is a new line test
-  textSpeed: 0.1
-  canvas: {fileID: 1263898806}
-  DialogueTrigger: {fileID: 0}
-  index: 0
-  hasPlayed: 0
 --- !u!65 &540828115
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3928,6 +3933,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1687230079}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &540828117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540828113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2882ee37082eff6448ffe39bdb208cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: 
+    sentences:
+    - Press A & D To Move
+--- !u!114 &540828118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540828113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517c2d9e1b86325479f18ad2441e6f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueBox: {fileID: 1263898806}
+  dialogueManager: {fileID: 510250386}
+  dialogueTrigger: {fileID: 540828117}
+  playingDialogue: 0
 --- !u!1 &576603047
 GameObject:
   m_ObjectHideFlags: 0
@@ -8226,6 +8263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1143248428}
   - component: {fileID: 1143248429}
+  - component: {fileID: 1143248431}
   - component: {fileID: 1143248430}
   m_Layer: 0
   m_Name: Dialogue Trigger
@@ -8233,7 +8271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1143248428
 Transform:
   m_ObjectHideFlags: 0
@@ -8279,17 +8317,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1143248427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35815ccf961c0b84aae172adc60add42, type: 3}
+  m_Script: {fileID: 11500000, guid: 2882ee37082eff6448ffe39bdb208cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textComponent: {fileID: 1991298128}
-  lines:
-  - Press Space to Jump
-  textSpeed: 0.1
-  canvas: {fileID: 1263898806}
-  DialogueTrigger: {fileID: 0}
-  index: 0
-  hasPlayed: 0
+  dialogue:
+    name: 
+    sentences:
+    - You can jump with Space
+--- !u!114 &1143248431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143248427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517c2d9e1b86325479f18ad2441e6f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueBox: {fileID: 1263898806}
+  dialogueManager: {fileID: 510250386}
+  dialogueTrigger: {fileID: 1143248430}
+  playingDialogue: 0
 --- !u!43 &1192059251
 Mesh:
   m_ObjectHideFlags: 0
@@ -8465,7 +8515,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1210567499}
   - component: {fileID: 1210567501}
-  - component: {fileID: 1210567500}
+  - component: {fileID: 1210567503}
+  - component: {fileID: 1210567502}
   m_Layer: 0
   m_Name: Dialogue Trigger
   m_TagString: Untagged
@@ -8488,26 +8539,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1687230079}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1210567500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1210567498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35815ccf961c0b84aae172adc60add42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textComponent: {fileID: 1991298128}
-  lines:
-  - Press Space on a wall to Wall Jump
-  textSpeed: 0.1
-  canvas: {fileID: 1263898806}
-  DialogueTrigger: {fileID: 0}
-  index: 0
-  hasPlayed: 0
 --- !u!65 &1210567501
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8529,6 +8560,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.775587, y: 6.2143183, z: 3.8954751}
   m_Center: {x: 0.5871949, y: 2.6071591, z: -0.2451297}
+--- !u!114 &1210567502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210567498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2882ee37082eff6448ffe39bdb208cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: 
+    sentences:
+    - 
+--- !u!114 &1210567503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210567498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517c2d9e1b86325479f18ad2441e6f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueBox: {fileID: 1263898806}
+  dialogueManager: {fileID: 510250386}
+  dialogueTrigger: {fileID: 1210567502}
+  playingDialogue: 0
 --- !u!1 &1246050658
 GameObject:
   m_ObjectHideFlags: 0
@@ -11655,6 +11718,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 413080216}
+  - {fileID: 510250385}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1663770011
