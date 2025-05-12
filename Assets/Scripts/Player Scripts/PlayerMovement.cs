@@ -88,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Bullet Time Variable
     private bool bulletTimeActive;
+    private bool bulletTimeReady = true;
     public float bulletTimeTimer;
 
     //Health Variable
@@ -787,22 +788,34 @@ public class PlayerMovement : MonoBehaviour
 
     public void BulletTime()
     {
-        if (InputManager.BulletTimeIsHeld && bulletTimeTimer > 0)
+        if (InputManager.BulletTimeIsHeld && (bulletTimeTimer <= moveStats.bulletTimeMax || bulletTimeTimer > 0) && bulletTimeReady)
         {
             bulletTimeActive = true;
-            bulletTimeTimer -= Time.fixedDeltaTime;
+            bulletTimeTimer -= Time.fixedDeltaTime * 0.5f;
             Time.timeScale = 0.50f;
+
+           if(bulletTimeTimer <= 0)
+           {
+                bulletTimeTimer = 0;
+                bulletTimeReady = false;
+           }
         }
         else if (InputManager.BulletTimeWasReleased || bulletTimeTimer <= 0)
         {
+            bulletTimeReady = false;
             bulletTimeActive = false;
             Time.timeScale = 1f; 
-
         }
 
-        if (bulletTimeTimer < moveStats.bulletTimeMax && !bulletTimeActive)
+        if (bulletTimeTimer < moveStats.bulletTimeMax && !bulletTimeActive && !bulletTimeReady)
         {
-            bulletTimeTimer += Time.fixedDeltaTime;
+            bulletTimeTimer += Time.fixedDeltaTime * 0.5f;
+
+            if(bulletTimeTimer >= moveStats.bulletTimeMax)
+            {
+                bulletTimeReady = true;
+                bulletTimeTimer = moveStats.bulletTimeMax;
+            }
         }
 
     }
