@@ -52,7 +52,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   attackCooldown: 0.5
-  bulletTimeMax: 1
+  bulletTimeMax: 2
   showWalkJumpArc: 0
   showRunJumpArc: 0
   stopOnCollision: 0
