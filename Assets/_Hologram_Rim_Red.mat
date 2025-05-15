@@ -12,6 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _GLITCH_ON
   - _GLOW_ON
   - _SCAN_ON
   m_InvalidKeywords:
@@ -95,7 +96,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Flicker: 0
-    - _FlickerSpeed: 0.01
+    - _FlickerSpeed: 4
     - _Fold: 35
     - _Glitch: 1
     - _GlitchIntensity: 0.25
@@ -110,7 +111,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RimFallness: 0.537
-    - _RimPower: 0.1
+    - _RimPower: 1.22
     - _RimStrength: 1.54
     - _ScanSpeed: 1.46
     - _ScanTiling: 10
@@ -126,7 +127,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Direction: {r: 0, g: 1, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 1, g: 0.009896709, b: 0, a: 1}
+    - _MainColor: {r: 1, g: 0, b: 0.3387189, a: 1}
     - _RimColor: {r: 1, g: 0.066176474, b: 0.066176474, a: 1}
     - _ScanlineColor: {r: 0, g: 0, b: 1, a: 1}
   m_BuildTextureStacks: []
