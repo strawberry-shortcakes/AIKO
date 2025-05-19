@@ -6,6 +6,7 @@ using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -90,6 +91,8 @@ public class PlayerMovement : MonoBehaviour
     private bool bulletTimeActive;
     private bool bulletTimeReady = true;
     public float bulletTimeTimer;
+
+    public Image bulletTimeMeter;
 
     //Health Variable
     public int maxHealth = 5;
@@ -791,7 +794,7 @@ public class PlayerMovement : MonoBehaviour
         if (InputManager.BulletTimeIsHeld && (bulletTimeTimer <= moveStats.bulletTimeMax || bulletTimeTimer > 0) && bulletTimeReady)
         {
             bulletTimeActive = true;
-            bulletTimeTimer -= Time.fixedDeltaTime * 0.5f;
+            bulletTimeTimer -= Time.fixedDeltaTime * 0.25f;
             Time.timeScale = 0.50f;
 
            if(bulletTimeTimer <= 0)
@@ -809,7 +812,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (bulletTimeTimer < moveStats.bulletTimeMax && !bulletTimeActive && !bulletTimeReady)
         {
-            bulletTimeTimer += Time.fixedDeltaTime * 0.5f;
+            bulletTimeTimer += Time.fixedDeltaTime * 0.05f;
 
             if(bulletTimeTimer >= moveStats.bulletTimeMax)
             {
@@ -818,6 +821,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        bulletTimeMeter.fillAmount = bulletTimeTimer / moveStats.bulletTimeMax;
     }
 
     #endregion

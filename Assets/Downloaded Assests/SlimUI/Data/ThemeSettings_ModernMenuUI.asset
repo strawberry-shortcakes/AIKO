@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: ThemeSettings_ModernMenuUI
   m_EditorClassIdentifier: 
   custom1:
-    graphic1: {r: 1, g: 0.6862745, b: 0, a: 1}
+    graphic1: {r: 0.7877358, g: 0.7927698, b: 1, a: 1}
     text1:
       serializedVersion: 2
       rgba: 4294967295
   custom2:
-    graphic2: {r: 0, g: 0.6677432, b: 1, a: 1}
+    graphic2: {r: 0.4485582, g: 0.75329316, b: 0.9056604, a: 1}
     text2:
       serializedVersion: 2
       rgba: 4294966499
   custom3:
-    graphic3: {r: 0.26606238, g: 1, b: 0, a: 1}
+    graphic3: {r: 0.8790406, g: 0.9339623, b: 0.8590691, a: 1}
     text3:
       serializedVersion: 2
       rgba: 4293066721
-  currentColor: {r: 1, g: 0.6862745, b: 0, a: 1}
+  currentColor: {r: 0, g: 0.7981026, b: 1, a: 1}
   textColor:
     serializedVersion: 2
     rgba: 4294967295
