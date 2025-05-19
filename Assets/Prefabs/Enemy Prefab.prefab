@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 4821981806443137331}
   m_Layer: 0
   m_Name: Enemy A
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,7 +216,8 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8
-  health: 120
+  maxHealth: 3
+  health: 3
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5
@@ -236,7 +237,7 @@ GameObject:
   - component: {fileID: 7006089484997245893}
   m_Layer: 0
   m_Name: Enemy Prefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
