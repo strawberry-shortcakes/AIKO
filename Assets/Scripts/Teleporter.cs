@@ -32,7 +32,7 @@ public class Teleporter : MonoBehaviour
         Debug.Log(" SEX "); 
             if (gm.availableScenes.Count < 1)
             {
-                gm.availableScenes = gm.playedScenes; // lazy, I know
+                gm.availableScenes = gm.playedScenes;
                 gm.playedScenes = new List<int>();
             }
         }
