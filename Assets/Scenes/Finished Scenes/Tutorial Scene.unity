@@ -15875,7 +15875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbcb575cb246c804695f19f4bc251374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableScenes: 020000000300000004000000
+  availableScenes: 040000000300000002000000
   playedScenes: 
 --- !u!1 &732411334
 GameObject:
