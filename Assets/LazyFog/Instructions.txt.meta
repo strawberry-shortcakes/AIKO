@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d1e9fdabaf143451aa177016ce952138
+timeCreated: 1427817248
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 33711
+  packageName: LazyFog
+  packageVersion: draft
+  assetPath: Assets/LazyFog/Instructions.txt
+  uploadId: 57346
