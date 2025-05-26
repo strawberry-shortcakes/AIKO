@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using TMPro;
+using NUnit.Framework;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -18,6 +20,14 @@ public class MainMenuScript : MonoBehaviour
     public GameObject graphicsMenu;
     public GameObject audioMenu;
 
+    Resolution[] resolutions;
+    public TMP_Dropdown resolutionDropdown;
+    int currentResolutionIndex = 0;
+    bool isResButtonPressed = false;
+
+    int minRes;
+    int maxRes;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,6 +40,11 @@ public class MainMenuScript : MonoBehaviour
         optionsMenu.SetActive(false);
         graphicsMenu.SetActive(false);
         audioMenu.SetActive(false);
+
+        Resolution();
+
+        optionsMenu.SetActive(false);
+        controlsMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -129,9 +144,90 @@ public class MainMenuScript : MonoBehaviour
     }
     #endregion
 
+    #region Graphics Menu
+
+    public void SetFullScreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen;
+    }
+
+    public void SetQuality (int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
+
+    public void Resolution()
+    {
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
+        List<string> options = new List<string>();
+
+
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + "x" + resolutions[i].height;
+            options.Add(option);
+
+            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height && !isResButtonPressed)
+            {
+                currentResolutionIndex = i;
+            }
+        }
+
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
+
+        maxRes = resolutions.Length - 1;
+        minRes = 0;
+    }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    public void NextResolution()
+    {
+        if(currentResolutionIndex < maxRes)
+        {
+            currentResolutionIndex += 1;
+            isResButtonPressed = true;
+            Resolution();
+        }   
+    }
+
+    public void PreviousResolution() 
+    {
+        if(currentResolutionIndex > minRes) 
+        {
+            currentResolutionIndex -= 1;
+            isResButtonPressed = true;
+            Resolution();
+        }
+    }
+
+
+    public void SetVSync(bool isVsync)
+    {
+        if(isVsync)
+        {
+            QualitySettings.vSyncCount = 1;
+        }
+        else
+        {
+            QualitySettings.vSyncCount = 0;
+        }
+    }
+
+    
+
+    #endregion
+
     public void Play()
     {
-
+        SceneManager.LoadScene(1);
     }
 
     
