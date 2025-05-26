@@ -2141,7 +2141,7 @@ Transform:
   m_GameObject: {fileID: 91324481}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: 111.31, y: 5.21, z: 0.0000009536743}
+  m_LocalPosition: {x: 110.66, y: 5.9299974, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8474,7 +8474,7 @@ Transform:
   m_GameObject: {fileID: 398091689}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: 111.31, y: 5.21, z: 0.0000009536743}
+  m_LocalPosition: {x: 110.66, y: 5.9299974, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15875,7 +15875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbcb575cb246c804695f19f4bc251374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableScenes: 040000000300000002000000
+  availableScenes: 02000000030000000400000005000000
   playedScenes: 
 --- !u!1 &732411334
 GameObject:
@@ -31212,7 +31212,7 @@ GameObject:
   - component: {fileID: 1446817928}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31330,7 +31330,7 @@ Transform:
   m_GameObject: {fileID: 1446817927}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 87.7, y: 34.2, z: 0}
+  m_LocalPosition: {x: 87.05, y: 34.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31761,7 +31761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4506c6d41cdfd2b479fa076cb7b7163f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 729024457}
+  gm: {fileID: 0}
 --- !u!1 &1477130608
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    public List<int> availableScenes = new List<int>() { 2, 4, 5 };
+    public List<int> availableScenes = new List<int>() { 2, 3, 4, 5 };
     public List<int> playedScenes = new List<int>();
 
     //void Awake()
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     //    DontDestroyOnLoad(this.gameObject);
     //}
 
-    void Awake()
+    void Awake()///DESTROY DUPLICATE
     {
         if(Instance == null)
         {
@@ -35,5 +35,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+
     }
 }

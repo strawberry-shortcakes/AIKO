@@ -141,6 +141,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3031678370909506225}
+  - {fileID: 4864408309659568130}
   m_Father: {fileID: 7179956430651616095}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4691428557835680467
@@ -209,7 +210,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8005338408816191737}
-  - {fileID: 4864408309659568130}
   - {fileID: 5645627729544337100}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -312,6 +312,11 @@ MonoBehaviour:
   mainCam: {fileID: 0}
   bulletPrefab: {fileID: 2206624481594878577, guid: fc2c2a4fefe2a8b4f9304111cfdf64e0, type: 3}
   bulletSpawnPoint: {fileID: 7145792049547002582}
+  bulletTimeTimer: 0
+  bulletTimeMeter: {fileID: 0}
+  maxHealth: 5
+  health: 0
+  isDead: 0
 --- !u!1 &5739714010204658300
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +329,7 @@ GameObject:
   - component: {fileID: 5194924538573058077}
   m_Layer: 0
   m_Name: Feet
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -342,7 +347,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7179956430651616095}
+  m_Father: {fileID: 8005338408816191737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5194924538573058077
 BoxCollider:

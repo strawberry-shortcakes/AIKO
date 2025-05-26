@@ -17,17 +17,18 @@ public class Teleporter : MonoBehaviour
     void Awake()
     {
         gm = GameObject.Find("TELEPORTER MANAGER").GetComponent<GameManager>();
+        //gm.availableScenes.RemoveAt(index);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Pre SEX");
+         Debug.Log("Pre Tag");
         if (other.CompareTag("Player")) 
         {
-            Debug.Log("SEX");
+             Debug.Log("Post taag");
 
             int index = Random.Range(0, gm.availableScenes.Count);
-            index = 0;//for debug
+             //index = 0;//for debug
             int theSceneIndex = gm.availableScenes[index];
             gm.availableScenes.RemoveAt(index);
 
@@ -35,8 +36,8 @@ public class Teleporter : MonoBehaviour
 
             gm.playedScenes.Add(theSceneIndex);
             SceneManager.LoadScene(theSceneIndex, LoadSceneMode.Single);
-            Debug.Log(index); 
-            Debug.Log(theSceneIndex); 
+             Debug.Log(index); //debug
+             Debug.Log(theSceneIndex); //debug
             if (gm.availableScenes.Count < 1)
             {
                 gm.availableScenes = gm.playedScenes;
