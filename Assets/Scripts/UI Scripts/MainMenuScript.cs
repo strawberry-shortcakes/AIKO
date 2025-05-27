@@ -19,6 +19,9 @@ public class MainMenuScript : MonoBehaviour
     public GameObject controlsMenu;
     public GameObject graphicsMenu;
     public GameObject audioMenu;
+    public GameObject creditsMenu;
+
+    bool creditsMenuActive;
 
     Resolution[] resolutions;
     public TMP_Dropdown resolutionDropdown;
@@ -112,6 +115,8 @@ public class MainMenuScript : MonoBehaviour
     {
         optionsMenu.SetActive(true);
         audioMenu.SetActive(true);
+        creditsMenu.SetActive(false);
+        creditsMenuActive = false;
     }
 
     public void CloseOptionsMenu()
@@ -230,5 +235,19 @@ public class MainMenuScript : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    
+    public void EnableCredits()
+    {
+        if(!creditsMenuActive)
+        {
+            creditsMenu.SetActive(true);
+            optionsMenu.SetActive(false);
+            creditsMenuActive = true;
+        }
+        else
+        {
+            creditsMenu.SetActive(false);
+            creditsMenuActive = false;
+        }
+        
+    }
 }
