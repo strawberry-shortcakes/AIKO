@@ -2,6 +2,7 @@
 using SpriteShadersUltimate.Demo;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Camera mainCam;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPoint;
-    
 
+    private Animator animator;
     private Rigidbody rb;
 
     //Movement Variables
@@ -114,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
         gunPivot.transform.position = transform.position;
         health = maxHealth;
         bulletTimeTimer = moveStats.bulletTimeMax;
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -999,6 +1001,37 @@ public class PlayerMovement : MonoBehaviour
             wallJumpPostBufferTimer -= Time.deltaTime;
         }
     }
+
+    #endregion
+
+    #region Animations
+    private void Animations(float acceleration, float deceleration, Vector3 moveInput)
+    {
+        // Run
+        if (Mathf.Abs(moveInput.x) >= moveStats.moveThreshold)
+        {
+            animator.SetFloat("Speed", 0.5f);
+            // Sprint
+            if (InputManager.RunIsHeld)
+            {
+                // do sprint animation
+            }
+            else 
+            {
+             
+            }
+
+            
+
+        }
+        // If moveinput below threshold do idle 
+        if (Mathf.Abs(moveInput.x) < moveStats.moveThreshold)
+        {
+            // idle
+            animator.SetFloat("Speed", 0f);
+        }
+    }
+    
 
     #endregion
 }
