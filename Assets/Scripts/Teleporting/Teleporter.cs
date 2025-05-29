@@ -7,12 +7,9 @@ public class Teleporter : MonoBehaviour
     public GameManager gm;
 
     //public List<int> availableScenes = new List<int>() {2, 3, 4};
-
     //public List<int> playedScenes = new List<int>();
 
     //public int theSceneIndex;
-
-    //Single level level
 
     void Awake()
     {
@@ -30,9 +27,7 @@ public class Teleporter : MonoBehaviour
             int index = Random.Range(0, gm.availableScenes.Count);
              //index = 0;//for debug
             int theSceneIndex = gm.availableScenes[index];
-            gm.availableScenes.RemoveAt(index);
-
-            
+            gm.availableScenes.RemoveAt(index);           
 
             gm.playedScenes.Add(theSceneIndex);
             SceneManager.LoadScene(theSceneIndex, LoadSceneMode.Single);
@@ -44,15 +39,13 @@ public class Teleporter : MonoBehaviour
                 gm.playedScenes = new List<int>();
             }
         }
-    }
-   // void OnTriggerEnter(Collider other)
+    }  
+}
+// void OnTriggerEnter(Collider other)
     //{
       //  if (other.CompareTag("Player"))
        // {
        //     print("Switching Scene to " + scenebuildIndex);
        //     SceneManager.LoadScene(scenebuildIndex, LoadSceneMode.Single);
-
        // }
     //}
-
-}

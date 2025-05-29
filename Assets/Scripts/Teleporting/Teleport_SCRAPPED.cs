@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
-public class Teleport_12 : MonoBehaviour
+public class Teleport_SCRAPPED: MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
