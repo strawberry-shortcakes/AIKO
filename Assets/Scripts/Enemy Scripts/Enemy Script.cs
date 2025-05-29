@@ -19,14 +19,14 @@ public class EnemyScript : MonoBehaviour
     //Attacking 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public GameObject projectile; 
+    //public GameObject projectile; 
 
     //States 
     public float sightRange, attackRange;
     public bool playerInSightRange;
     public bool playerInAttackRange;
 
-    private void Awake()
+    private void start()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
