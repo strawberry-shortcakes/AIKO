@@ -86,7 +86,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Pow: 0.6
-    - _Scale: 0.6
+    - _Scale: 0.8840909
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
