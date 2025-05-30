@@ -19,14 +19,14 @@ public class EnemyScript : MonoBehaviour
     //Attacking 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    //public GameObject projectile; 
+    public GameObject projectile; 
 
     //States 
     public float sightRange, attackRange;
     public bool playerInSightRange;
     public bool playerInAttackRange;
 
-    private void start()
+    private void Awake()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
@@ -35,6 +35,7 @@ public class EnemyScript : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
+        GetComponent<EnemyScript>().enabled = true;
     }
 
     private void Update()

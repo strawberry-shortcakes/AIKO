@@ -73,11 +73,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2386373135218100984}
+  - component: {fileID: 4821981806443137331}
   - component: {fileID: 1877183053373017784}
   - component: {fileID: 4876446794888969730}
   - component: {fileID: 958532998136918257}
   - component: {fileID: 5480603311568942785}
-  - component: {fileID: 4821981806443137331}
   m_Layer: 0
   m_Name: Enemy A
   m_TagString: Enemy
@@ -100,6 +100,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7006089484997245893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4821981806443137331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4519011296747570909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f65ac2565cd1074ca9e642e0b9b570c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 5480603311568942785}
+  player: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 8
+  maxHealth: 3
+  health: 3
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 5
+  timeBetweenAttacks: 0.5
+  projectile: {fileID: 0}
+  sightRange: 8
+  attackRange: 2
+  playerInSightRange: 0
+  playerInAttackRange: 0
 --- !u!33 &1877183053373017784
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -196,36 +226,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4821981806443137331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4519011296747570909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f65ac2565cd1074ca9e642e0b9b570c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 5480603311568942785}
-  player: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 8
-  maxHealth: 3
-  health: 3
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 5
-  timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
-  sightRange: 8
-  attackRange: 2
-  playerInSightRange: 0
-  playerInAttackRange: 0
 --- !u!1 &7016710317853587102
 GameObject:
   m_ObjectHideFlags: 0
