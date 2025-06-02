@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Test Scenes/Menu (Enable TMP).unity
-    guid: 829a86ba161cdd840842063447f41aab
+    path: Assets/Scenes/Menu Scenes/Main Menu.unity
+    guid: 1423757efee66ae4291aa4ebf16310d7
   - enabled: 1
     path: Assets/Scenes/Finished Scenes/Tutorial Scene.unity
     guid: 584f175ddd651fd4e9cd97c4e3a25809

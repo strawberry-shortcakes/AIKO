@@ -54,6 +54,11 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateControls();
+    }
+
+    void UpdateControls()
+    {
         Movement = moveAction.ReadValue<Vector2>();
         MousePos = aimAction.ReadValue<Vector2>();
 
