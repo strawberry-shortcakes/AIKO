@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu Scenes/Main Menu.unity
+    guid: 1423757efee66ae4291aa4ebf16310d7
+  - enabled: 1
     path: Assets/Scenes/Finished Scenes/Tutorial Scene.unity
     guid: 584f175ddd651fd4e9cd97c4e3a25809
   - enabled: 1
@@ -20,12 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Finished Scenes/Sam level A.unity
     guid: 2a1f35d55744a8343ad6c9ea479ecd04
-  - enabled: 1
-    path: Assets/Scenes/Menu Scenes/Main Menu.unity
-    guid: 1423757efee66ae4291aa4ebf16310d7
-  - enabled: 1
-    path: Assets/Kannas Test Box/Height Fog/Sliding.unity
-    guid: 54e187ce27d75b14fbf6ef699d2649e2
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 477e3b3f1adc2b04e8c55d6325787d06, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
