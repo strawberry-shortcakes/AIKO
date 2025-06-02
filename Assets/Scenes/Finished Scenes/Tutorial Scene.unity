@@ -2141,7 +2141,7 @@ Transform:
   m_GameObject: {fileID: 91324481}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: 110.66, y: 5.9299974, z: 0}
+  m_LocalPosition: {x: -0.40000534, y: 0.16999912, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8474,7 +8474,7 @@ Transform:
   m_GameObject: {fileID: 398091689}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: 110.66, y: 5.9299974, z: 0}
+  m_LocalPosition: {x: -0.40000534, y: 0.16999912, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20520,6 +20520,7 @@ GameObject:
   - component: {fileID: 882437581}
   - component: {fileID: 882437583}
   - component: {fileID: 882437582}
+  - component: {fileID: 882437584}
   m_Layer: 0
   m_Name: Bulkhead (2)
   m_TagString: Untagged
@@ -20594,6 +20595,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882437580}
+  m_Mesh: {fileID: -5722764654158415466, guid: 4e5793bcf531f70469ab1d6113f61b5c, type: 3}
+--- !u!64 &882437584
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882437580}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: -5722764654158415466, guid: 4e5793bcf531f70469ab1d6113f61b5c, type: 3}
 --- !u!1 &890332831
 GameObject:
@@ -23483,7 +23506,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4376519841951291662, guid: 2350b54f74dd3e74fb2cf18e1fed1119, type: 3}
 --- !u!1 &1056144312
@@ -31334,7 +31357,7 @@ Transform:
   m_GameObject: {fileID: 1446817927}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 87.05, y: 34.92, z: 0}
+  m_LocalPosition: {x: -24.01, y: 29.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

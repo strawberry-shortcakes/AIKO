@@ -464,8 +464,8 @@ Transform:
   m_GameObject: {fileID: 14990992}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000119209275, y: -0.00000070035236, z: 1, w: -0.00000044254165}
-  m_LocalPosition: {x: 1.5, y: 0.24, z: -67.85}
-  m_LocalScale: {x: -0.0118108075, y: -0.009981275, z: -0.012007368}
+  m_LocalPosition: {x: 1.5, y: 0.24, z: -69.238}
+  m_LocalScale: {x: -0.0118108075, y: -0.009981275, z: -0.017680848}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1645456214}
@@ -5595,8 +5595,8 @@ Transform:
   m_GameObject: {fileID: 244534759}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000119209275, y: -0.00000070035236, z: 1, w: -0.00000044254165}
-  m_LocalPosition: {x: 1.5, y: -2.51, z: -67.85}
-  m_LocalScale: {x: -0.0118108075, y: -0.009981275, z: -0.012007368}
+  m_LocalPosition: {x: 1.5, y: -2.51, z: -69.238}
+  m_LocalScale: {x: -0.0118108075, y: -0.009981275, z: -0.017680848}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1645456214}
@@ -6964,7 +6964,7 @@ Transform:
   m_GameObject: {fileID: 305315092}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: -31.275124, y: 1.7374512, z: -13.304322}
+  m_LocalPosition: {x: -31.313818, y: 1.7374592, z: -13.303038}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12715,7 +12715,7 @@ Transform:
   m_GameObject: {fileID: 519678130}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: -31.275124, y: 1.7374512, z: -13.304322}
+  m_LocalPosition: {x: -31.313818, y: 1.7374592, z: -13.303038}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26667,7 +26667,6 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
   sightRange: 8
   attackRange: 1
   playerInSightRange: 0
@@ -31629,7 +31628,6 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
   sightRange: 5
   attackRange: 1
   playerInSightRange: 0
@@ -32196,8 +32194,8 @@ Transform:
   m_GameObject: {fileID: 1348903351}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000119209275, y: -0.00000070035236, z: 1, w: -0.00000044254165}
-  m_LocalPosition: {x: 1.6, y: -12.07, z: -67.851}
-  m_LocalScale: {x: -0.0118108075, y: -0.009981275, z: -0.012007368}
+  m_LocalPosition: {x: 1.6, y: -12.07, z: -69.2394}
+  m_LocalScale: {x: -0.0118108075, y: -0.009981275, z: -0.017680848}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1645456214}
@@ -37131,8 +37129,8 @@ Transform:
   m_GameObject: {fileID: 1537855262}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000119209275, y: -0.00000070035236, z: 1, w: -0.00000044254165}
-  m_LocalPosition: {x: 1.6, y: -9.32, z: -67.851}
-  m_LocalScale: {x: -0.0118108075, y: -0.009981275, z: -0.012007368}
+  m_LocalPosition: {x: 1.6, y: -9.32, z: -69.2394}
+  m_LocalScale: {x: -0.0118108075, y: -0.009981275, z: -0.017680848}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1645456214}
@@ -40552,8 +40550,12 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.1895068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -50.1488
+      value: -51.6
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -40561,7 +40563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.84818745
+      value: -0.85
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -50314,7 +50316,6 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
   sightRange: 4
   attackRange: 1
   playerInSightRange: 0
