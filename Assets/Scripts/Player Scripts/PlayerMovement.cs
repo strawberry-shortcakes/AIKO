@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
     private bool bulletTimeReady = true;
     public float bulletTimeTimer;
 
-    public Image bulletTimeMeter;
+    //public Image bulletTimeMeter;
 
     //Health Variable
     public int maxHealth = 5;
@@ -823,7 +823,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        bulletTimeMeter.fillAmount = bulletTimeTimer / moveStats.bulletTimeMax;
+        //bulletTimeMeter.fillAmount = bulletTimeTimer / moveStats.bulletTimeMax;
     }
 
     #endregion

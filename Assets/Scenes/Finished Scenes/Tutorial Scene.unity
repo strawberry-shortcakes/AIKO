@@ -15881,6 +15881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableScenes: 02000000030000000400000005000000
   playedScenes: 
+  pm: {fileID: 1446817928}
 --- !u!1 &732411334
 GameObject:
   m_ObjectHideFlags: 0
@@ -31264,7 +31265,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2206624481594878577, guid: fc2c2a4fefe2a8b4f9304111cfdf64e0, type: 3}
   bulletSpawnPoint: {fileID: 278627050}
   bulletTimeTimer: 0
-  bulletTimeMeter: {fileID: 0}
   maxHealth: 5
   health: 0
   isDead: 0

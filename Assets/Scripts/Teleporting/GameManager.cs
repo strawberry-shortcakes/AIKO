@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public List<int> availableScenes = new List<int>() { 2, 3, 4, 5 };
     public List<int> playedScenes = new List<int>();
 
+    public PlayerMovement pm;
+
     //void Awake()
     //{
     //    if (Instance != null && Instance != this)
@@ -22,7 +24,9 @@ public class GameManager : MonoBehaviour
 
     void Awake()///DESTROY DUPLICATE
     {
-        if(Instance == null)
+        pm = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -32,6 +36,25 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    void Start ()
+    {
+        
+    }
+
+    void Update ()
+    {
+        if (pm.isDead)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Scene scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(scene.name);
+            }
+
+            
         }
     }
 }
