@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Death : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.tag == "Player")
             Application.LoadLevel(Application.loadedLevel);
     }
 }

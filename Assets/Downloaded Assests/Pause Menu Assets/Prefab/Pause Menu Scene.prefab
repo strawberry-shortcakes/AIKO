@@ -33,7 +33,7 @@ RectTransform:
   m_Father: {fileID: 22434572}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.4, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -198,7 +198,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: dda5bca70a59c5c4ba2865a66af43fda, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -386,6 +386,7 @@ GameObject:
   - component: {fileID: 2039634}
   - component: {fileID: 12462374}
   - component: {fileID: 8172142}
+  - component: {fileID: 2559415386052392715}
   m_Layer: 5
   m_Name: Minimap Camera
   m_TagString: Untagged
@@ -475,6 +476,50 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102840}
   m_Enabled: 0
+--- !u!114 &2559415386052392715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &103940
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +820,7 @@ RectTransform:
   m_Father: {fileID: 22420998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1141,7 +1186,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: updateMasterVol
         m_Mode: 0
         m_Arguments:
@@ -1442,7 +1487,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &108286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,8 +1675,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22444036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2109,7 +2154,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: updateShadowDistance
         m_Mode: 0
         m_Arguments:
@@ -2681,7 +2726,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: updateEffectsVol
         m_Mode: 0
         m_Arguments:
@@ -3447,11 +3492,11 @@ MonoBehaviour:
   m_Options:
     m_Options:
     - m_Text: Disabled
-      m_Image: {fileID: 21300000, guid: 29773568b6a753040af2ebde66a30213, type: 3}
+      m_Image: {fileID: 0}
     - m_Text: Forced ON
-      m_Image: {fileID: 21300000, guid: 29773568b6a753040af2ebde66a30213, type: 3}
+      m_Image: {fileID: 0}
     - m_Text: Per Texture
-      m_Image: {fileID: 21300000, guid: 29773568b6a753040af2ebde66a30213, type: 3}
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3466,7 +3511,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!1 &118452
 GameObject:
@@ -3501,7 +3546,7 @@ RectTransform:
   m_Father: {fileID: 22427002}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3675,7 +3720,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &119522
 GameObject:
   m_ObjectHideFlags: 0
@@ -4114,7 +4159,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &121886
 GameObject:
   m_ObjectHideFlags: 0
@@ -4148,7 +4193,7 @@ RectTransform:
   m_Father: {fileID: 22445902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4322,7 +4367,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &123352
 GameObject:
   m_ObjectHideFlags: 0
@@ -4434,8 +4479,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22495968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4813,7 +4858,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 2056428}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4991,13 +5036,14 @@ GameObject:
   - component: {fileID: 22255562}
   - component: {fileID: 11492890}
   - component: {fileID: 9571294}
+  - component: {fileID: 8407236594461098090}
   m_Layer: 5
   m_Name: Video Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &22424832
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5081,6 +5127,47 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8407236594461098090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 16
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11499738}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: returnToMenu
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11499738}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: cancelVideo
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &126222
 GameObject:
   m_ObjectHideFlags: 0
@@ -5167,7 +5254,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: toggleAO
         m_Mode: 0
         m_Arguments:
@@ -5177,7 +5264,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &126392
 GameObject:
@@ -5743,7 +5830,7 @@ RectTransform:
   m_Father: {fileID: 22441570}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.091836736, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5843,7 +5930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5851,19 +5938,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f67bd30f338f33a46b83b4ab9a8d5e51, type: 3}
-    m_FontSize: 30
+    m_Font: {fileID: 12800000, guid: 611d437b106e60f4a960339612be7a0d, type: 3}
+    m_FontSize: 54
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 54
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Title
+  m_Text: A.I.K.O.
 --- !u!1 &129840
 GameObject:
   m_ObjectHideFlags: 0
@@ -6080,8 +6167,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22425032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.4, y: 0}
+  m_AnchorMax: {x: 0.4, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6423,8 +6510,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22453280}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.000015258789, y: 0.00000667572}
   m_SizeDelta: {x: 21.8, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6478,6 +6565,7 @@ GameObject:
   - component: {fileID: 22265722}
   - component: {fileID: 11468870}
   - component: {fileID: 9530686}
+  - component: {fileID: 7493623207198887614}
   m_Layer: 5
   m_Name: Audio Panel
   m_TagString: Untagged
@@ -6567,6 +6655,47 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7493623207198887614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 16
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11499738}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: returnToMenu
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11499738}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: cancelAudio
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &132036
 GameObject:
   m_ObjectHideFlags: 0
@@ -6929,7 +7058,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: updateTex
         m_Mode: 0
         m_Arguments:
@@ -7159,7 +7288,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &134258
 GameObject:
   m_ObjectHideFlags: 0
@@ -7305,8 +7434,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22445910}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7536,8 +7665,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22458264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.000015258789, y: 0.00000667572}
   m_SizeDelta: {x: 21.8, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8124,12 +8253,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f67bd30f338f33a46b83b4ab9a8d5e51, type: 3}
-    m_FontSize: 31
+    m_Font: {fileID: 12800000, guid: 611d437b106e60f4a960339612be7a0d, type: 3}
+    m_FontSize: 44
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 44
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -8313,7 +8442,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: updateFOV
         m_Mode: 0
         m_Arguments:
@@ -8605,7 +8734,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: lodBias
         m_Mode: 0
         m_Arguments:
@@ -8743,7 +8872,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: updateMusicVol
         m_Mode: 0
         m_Arguments:
@@ -8825,7 +8954,7 @@ RectTransform:
   m_Father: {fileID: 22491586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8899,8 +9028,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22425332}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9309,9 +9438,9 @@ RectTransform:
   m_Father: {fileID: 22443588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &11455486
 MonoBehaviour:
@@ -9705,107 +9834,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!1 &144214
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 413640}
-  - component: {fileID: 2056428}
-  - component: {fileID: 12471542}
-  - component: {fileID: 8111630}
-  m_Layer: 0
-  m_Name: Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &413640
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144214}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.99901754, z: 0, w: -0.044317074}
-  m_LocalPosition: {x: -512.8, y: -398.8297, z: -662.6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 443146}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &2056428
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144214}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 0
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!124 &12471542
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144214}
-  m_Enabled: 1
---- !u!81 &8111630
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144214}
-  m_Enabled: 1
 --- !u!1 &144304
 GameObject:
   m_ObjectHideFlags: 0
@@ -10125,7 +10153,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: enableSimpleTerrain
         m_Mode: 0
         m_Arguments:
@@ -10135,7 +10163,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &146800
 GameObject:
@@ -10626,8 +10654,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22454246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11086,10 +11114,10 @@ MonoBehaviour:
   quitPanelAnimator: {fileID: 9593558}
   pauseMenu: {fileID: 11490214}
   mainMenu: Pausemenu
-  DOFScriptName: 
-  AOScriptName: 
-  mainCam: {fileID: 2056428}
-  mainCamObj: {fileID: 144214}
+  DOFScriptName: DepthOfField
+  AOScriptName: AmbientOcclusion
+  mainCam: {fileID: 0}
+  mainCamObj: {fileID: 0}
   detailDensity: 0
   timeScale: 1
   terrain: {fileID: 0}
@@ -11136,7 +11164,7 @@ MonoBehaviour:
   - {fileID: 8275414}
   otherUIElements: []
   hardCodeSomeVideoSettings: 0
-  useSimpleTerrain: 1
+  useSimpleTerrain: 0
   uiEventSystem: {fileID: 11456238}
   defualtSelectedVideo: {fileID: 192700}
   defualtSelectedAudio: {fileID: 107158}
@@ -11552,9 +11580,9 @@ RectTransform:
   m_Father: {fileID: 22403486}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -6.54, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &11400716
 MonoBehaviour:
@@ -12104,7 +12132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &156564
@@ -12117,6 +12145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 492846}
   - component: {fileID: 10860832}
+  - component: {fileID: 6672891407669926651}
   m_Layer: 5
   m_Name: Directional light
   m_TagString: Untagged
@@ -12204,6 +12233,29 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &6672891407669926651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &157268
 GameObject:
   m_ObjectHideFlags: 0
@@ -12236,8 +12288,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22466350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.000015258789, y: 0.00000667572}
   m_SizeDelta: {x: 21.8, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12390,8 +12442,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22429908}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.091836736, y: 0}
+  m_AnchorMax: {x: 0.091836736, y: 1}
   m_AnchoredPosition: {x: 0.000015258789, y: 0.00000667572}
   m_SizeDelta: {x: 21.8, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13010,13 +13062,14 @@ GameObject:
   - component: {fileID: 22483998}
   - component: {fileID: 22200442}
   - component: {fileID: 11470702}
+  - component: {fileID: 3124702362094850156}
   m_Layer: 5
   m_Name: Main panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &22483998
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13077,6 +13130,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3124702362094850156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 16
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11499738}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: Resume
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &161384
 GameObject:
   m_ObjectHideFlags: 0
@@ -13655,12 +13737,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f67bd30f338f33a46b83b4ab9a8d5e51, type: 3}
-    m_FontSize: 31
+    m_Font: {fileID: 12800000, guid: 611d437b106e60f4a960339612be7a0d, type: 3}
+    m_FontSize: 43
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 43
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -13812,14 +13894,14 @@ RectTransform:
   m_GameObject: {fileID: 164140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0859, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 22457114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -533.95, y: 244.3}
+  m_AnchoredPosition: {x: -533.95, y: 230}
   m_SizeDelta: {x: 558, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &22247124
@@ -13843,7 +13925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6838235, g: 0.6838235, b: 0.6838235, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -13851,19 +13933,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f67bd30f338f33a46b83b4ab9a8d5e51, type: 3}
-    m_FontSize: 75
+    m_Font: {fileID: 12800000, guid: 611d437b106e60f4a960339612be7a0d, type: 3}
+    m_FontSize: 104
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 75
+    m_MaxSize: 115
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 0.33
-  m_Text: Pause Menu
+    m_LineSpacing: 0.37
+  m_Text: PAUSED
 --- !u!1 &164446
 GameObject:
   m_ObjectHideFlags: 0
@@ -14242,8 +14324,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22462790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.000015258789, y: 0.00000667572}
   m_SizeDelta: {x: 21.8, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14729,7 +14811,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &169450
 GameObject:
   m_ObjectHideFlags: 0
@@ -15213,7 +15295,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: updateTerrainLod
         m_Mode: 0
         m_Arguments:
@@ -15407,7 +15489,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 413640}
   - {fileID: 492846}
   - {fileID: 481226}
   - {fileID: 459092}
@@ -16035,7 +16116,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: toggleVSync
         m_Mode: 0
         m_Arguments:
@@ -16045,7 +16126,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &176772
 GameObject:
@@ -16342,7 +16423,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: updateCascades
         m_Mode: 0
         m_Arguments:
@@ -16456,12 +16537,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f67bd30f338f33a46b83b4ab9a8d5e51, type: 3}
-    m_FontSize: 31
+    m_Font: {fileID: 12800000, guid: 611d437b106e60f4a960339612be7a0d, type: 3}
+    m_FontSize: 41
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 49
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -16943,12 +17024,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f67bd30f338f33a46b83b4ab9a8d5e51, type: 3}
-    m_FontSize: 31
+    m_Font: {fileID: 12800000, guid: 611d437b106e60f4a960339612be7a0d, type: 3}
+    m_FontSize: 43
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 43
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -17717,7 +17798,7 @@ RectTransform:
   m_Father: {fileID: 22444126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17792,7 +17873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000047683716}
+  m_AnchoredPosition: {x: 0, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &186786
@@ -17940,8 +18021,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22480834}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18074,7 +18155,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: lodBias
         m_Mode: 0
         m_Arguments:
@@ -18276,7 +18357,7 @@ RectTransform:
   m_Father: {fileID: 22448510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18450,7 +18531,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &189214
 GameObject:
   m_ObjectHideFlags: 0
@@ -18688,7 +18769,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: toggleDOF
         m_Mode: 0
         m_Arguments:
@@ -18698,7 +18779,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &189924
 GameObject:
@@ -18851,7 +18932,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: setFullScreen
         m_Mode: 0
         m_Arguments:
@@ -18861,7 +18942,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &190230
 GameObject:
@@ -19542,7 +19623,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &192092
 GameObject:
   m_ObjectHideFlags: 0
@@ -19822,12 +19903,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f67bd30f338f33a46b83b4ab9a8d5e51, type: 3}
-    m_FontSize: 31
+    m_Font: {fileID: 12800000, guid: 611d437b106e60f4a960339612be7a0d, type: 3}
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 76
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -20322,7 +20403,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: updateRenderDist
         m_Mode: 0
         m_Arguments:
@@ -20424,7 +20505,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11499738}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: GreatArcStudios.PauseManager, Assembly-CSharp
         m_MethodName: updateDensity
         m_Mode: 0
         m_Arguments:
@@ -20928,7 +21009,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &196980
 GameObject:
   m_ObjectHideFlags: 0
