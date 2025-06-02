@@ -761,6 +761,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Default room FIXED (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.4415653
@@ -2204,7 +2208,6 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
   sightRange: 8
   attackRange: 2
   playerInSightRange: 0
@@ -2722,7 +2725,6 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
   sightRange: 8
   attackRange: 2
   playerInSightRange: 0
@@ -2884,7 +2886,6 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
   sightRange: 8
   attackRange: 2
   playerInSightRange: 0
@@ -2996,6 +2997,10 @@ PrefabInstance:
     - target: {fileID: 2041120926155754641, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_Name
       value: Default room FIXED
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
@@ -3607,6 +3612,10 @@ PrefabInstance:
     - target: {fileID: 2041120926155754641, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_Name
       value: Default room FIXED (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
@@ -4431,6 +4440,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Default room FIXED (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.4415653
@@ -4654,6 +4667,10 @@ PrefabInstance:
     - target: {fileID: 2041120926155754641, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_Name
       value: Default room FIXED (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
@@ -5683,6 +5700,10 @@ PrefabInstance:
     - target: {fileID: 2041120926155754641, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_Name
       value: Default room FIXED (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
@@ -7447,6 +7468,10 @@ PrefabInstance:
     - target: {fileID: 2041120926155754641, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_Name
       value: Default room FIXED (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
@@ -9761,7 +9786,6 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
   sightRange: 8
   attackRange: 2
   playerInSightRange: 0
@@ -9923,7 +9947,6 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
   sightRange: 8
   attackRange: 2
   playerInSightRange: 0
@@ -11388,6 +11411,10 @@ PrefabInstance:
     - target: {fileID: 2041120926155754641, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_Name
       value: Default room FIXED (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
@@ -12917,6 +12944,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Default room FIXED (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.4415653
@@ -13655,6 +13686,10 @@ PrefabInstance:
     - target: {fileID: 2041120926155754641, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_Name
       value: Default room FIXED (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
@@ -14551,7 +14586,7 @@ Transform:
   m_GameObject: {fileID: 1117027773}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: 8.409135, y: -7.2025247, z: -11.82048}
+  m_LocalPosition: {x: 8.3785515, y: -7.2025185, z: -11.819466}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16107,6 +16142,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Default room FIXED (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.4415653
@@ -17268,7 +17307,6 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
   sightRange: 8
   attackRange: 2
   playerInSightRange: 0
@@ -17516,7 +17554,6 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
   sightRange: 8
   attackRange: 2
   playerInSightRange: 0
@@ -17714,6 +17751,10 @@ PrefabInstance:
     - target: {fileID: 2041120926155754641, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_Name
       value: Default room FIXED (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
@@ -19247,6 +19288,10 @@ PrefabInstance:
     - target: {fileID: 2041120926155754641, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_Name
       value: Default room FIXED (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
@@ -21001,6 +21046,10 @@ PrefabInstance:
     - target: {fileID: 2041120926155754641, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_Name
       value: Default room FIXED (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464414264697721190, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4058382742975557402, guid: 6c662b1769e84e74a9951ff4bc9c304f, type: 3}
       propertyPath: m_LocalScale.x
@@ -23845,7 +23894,7 @@ Transform:
   m_GameObject: {fileID: 1734387643}
   serializedVersion: 2
   m_LocalRotation: {x: 0.058686778, y: 0.01655744, z: -0.0010776632, w: 0.99813855}
-  m_LocalPosition: {x: 8.409135, y: -7.2025247, z: -11.82048}
+  m_LocalPosition: {x: 8.3785515, y: -7.2025185, z: -11.819466}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
