@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth = 5;
     public int health;
     public bool isDead = false;
-    
+    private DeathEffect crtEffect;
 
     private void Awake()
     {
@@ -116,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
         health = maxHealth;
         bulletTimeTimer = moveStats.bulletTimeMax;
         animator = GetComponent<Animator>();
+        crtEffect = FindObjectOfType<DeathEffect>();
     }
 
     private void Update()
@@ -846,6 +847,20 @@ public class PlayerMovement : MonoBehaviour
             {
                 isDead = true;
                 Debug.Log("Dead!");
+
+                rb.linearVelocity = Vector3.zero;
+                rb.isKinematic = true; // Optional: if you want them to stop moving completely
+
+
+                if (crtEffect != null)
+                {
+                    crtEffect.TriggerGameOver();
+                }
+                else
+                {
+                    Debug.LogWarning("CRTGameOver not found in scene.");
+                }
+
             }
         }
     }
