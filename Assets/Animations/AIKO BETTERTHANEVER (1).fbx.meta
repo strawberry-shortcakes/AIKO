@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3db141ce711e3af44b7aff5e4960e7bd
+guid: 3d82259478f72ad489525a5502a2fd39
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: idle try 2
+      name: Aiko
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 158
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
