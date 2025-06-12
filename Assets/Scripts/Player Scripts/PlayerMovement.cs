@@ -134,7 +134,6 @@ public class PlayerMovement : MonoBehaviour
             BulletTime();
 
             PerformMeleeAttack();
-            Animations();
         }
         else
         {
