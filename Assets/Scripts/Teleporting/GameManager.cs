@@ -11,16 +11,6 @@ public class GameManager : MonoBehaviour
 
     public PlayerMovement pm;
 
-    //void Awake()
-    //{
-    //    if (Instance != null && Instance != this)
-    //    {
-    //        Destroy(gameObject); // Destroy if a duplicate is found
-    //        return;
-    //    }
-    //    Instance = this;
-    //    DontDestroyOnLoad(this.gameObject);
-    //}
 
     void Awake()///DESTROY DUPLICATE
     {
@@ -37,11 +27,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    void Start ()
-    {
-        
     }
 
     void Update ()
