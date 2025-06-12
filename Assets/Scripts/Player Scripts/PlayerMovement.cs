@@ -132,8 +132,12 @@ public class PlayerMovement : MonoBehaviour
             Aiming();
             Shoot();
             BulletTime();
-
+            Animations(InputManager.Movement);
             PerformMeleeAttack();
+<<<<<<< Updated upstream
+=======
+            
+>>>>>>> Stashed changes
         }
         else
         {
@@ -1020,7 +1024,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Animations
-    private void Animations(float acceleration, float deceleration, Vector3 moveInput)
+    private void Animations(Vector3 moveInput)
     {
         // Run
         if (Mathf.Abs(moveInput.x) >= moveStats.moveThreshold)
@@ -1030,6 +1034,7 @@ public class PlayerMovement : MonoBehaviour
             if (InputManager.RunIsHeld)
             {
                 // do sprint animation
+                animator.SetFloat("Speed", 1f);
             }
             else 
             {
