@@ -3,7 +3,6 @@ using SpriteShadersUltimate.Demo;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
