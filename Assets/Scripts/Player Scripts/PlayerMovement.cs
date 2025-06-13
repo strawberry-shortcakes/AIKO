@@ -134,10 +134,7 @@ public class PlayerMovement : MonoBehaviour
             BulletTime();
             Animations(InputManager.Movement);
             PerformMeleeAttack();
-<<<<<<< Updated upstream
-=======
-            
->>>>>>> Stashed changes
+
         }
         else
         {
